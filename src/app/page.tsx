@@ -144,11 +144,13 @@ export default async function HomePage() {
               [`${industries.length}`, "Industries we support"],
               [`${publishedStudies.length}+`, "Published architecture case studies"],
               [jobs.length > 0 ? String(jobs.length) : "Open", "Roles when we are hiring"],
-            ].map(([k, v]) => (
-              <div key={k} className="rounded-2xl border border-chalk-200 bg-chalk-50/80 p-5">
-                <p className="font-display text-3xl font-bold text-ink-950">{k}</p>
-                <p className="mt-2 text-sm text-ink-600">{v}</p>
-              </div>
+            ].map(([k, v], i) => (
+              <Reveal key={k} delay={i * 50} variant="up">
+                <div className="rounded-2xl border border-chalk-200 bg-chalk-50/80 p-5">
+                  <p className="font-display text-3xl font-bold text-ink-950">{k}</p>
+                  <p className="mt-2 text-sm text-ink-600">{v}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </Container>
@@ -381,34 +383,38 @@ export default async function HomePage() {
       {jobs.length > 0 ? (
         <section className="section-y border-b border-chalk-200 bg-chalk-100/60">
           <Container>
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <div>
-                <p className="tech-label text-signal">Careers</p>
-                <h2 className="font-display mt-3 text-3xl font-bold tracking-tight md:text-4xl">
-                  Open roles
-                </h2>
+            <Reveal>
+              <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+                <div>
+                  <p className="tech-label text-signal">Careers</p>
+                  <h2 className="font-display mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+                    Open roles
+                  </h2>
+                </div>
+                <Button href="/careers" variant="secondary">
+                  View careers
+                </Button>
               </div>
-              <Button href="/careers" variant="secondary">
-                View careers
-              </Button>
-            </div>
+            </Reveal>
             <ul className="mt-8 divide-y divide-chalk-200 overflow-hidden rounded-2xl border border-chalk-200 bg-paper">
-              {jobs.slice(0, 3).map((job) => (
+              {jobs.slice(0, 3).map((job, i) => (
                 <li key={job.slug}>
-                  <Link
-                    href={`/careers/${job.slug}`}
-                    className="flex flex-col gap-1 px-5 py-5 no-underline transition-colors hover:bg-chalk-50 sm:flex-row sm:items-center sm:justify-between"
-                  >
-                    <span>
-                      <span className="block font-display text-lg font-semibold text-ink-950">
-                        {job.title}
+                  <Reveal delay={i * 50}>
+                    <Link
+                      href={`/careers/${job.slug}`}
+                      className="flex flex-col gap-1 px-5 py-5 no-underline transition-colors hover:bg-chalk-50 sm:flex-row sm:items-center sm:justify-between"
+                    >
+                      <span>
+                        <span className="block font-display text-lg font-semibold text-ink-950">
+                          {job.title}
+                        </span>
+                        <span className="text-sm text-ink-600">
+                          {job.department} · {job.locationType} · {job.employmentType}
+                        </span>
                       </span>
-                      <span className="text-sm text-ink-600">
-                        {job.department} · {job.locationType} · {job.employmentType}
-                      </span>
-                    </span>
-                    <span className="text-sm font-semibold text-signal">Apply →</span>
-                  </Link>
+                      <span className="text-sm font-semibold text-signal">Apply →</span>
+                    </Link>
+                  </Reveal>
                 </li>
               ))}
             </ul>
@@ -418,34 +424,36 @@ export default async function HomePage() {
 
       <section className="section-y">
         <Container>
-          <div className="relative overflow-hidden rounded-3xl border border-chalk-200 shadow-lift">
-            <div className="absolute inset-0">
-              <Image src={media.contact.src} alt="" fill className="object-cover" sizes="100vw" />
-              <div className="absolute inset-0 bg-[linear-gradient(100deg,rgb(7_17_31/0.94),rgb(7_17_31/0.72))]" />
-            </div>
-            <div className="relative grid gap-8 p-8 md:grid-cols-2 md:p-12 lg:p-16">
-              <div>
-                <h2 className="font-display text-3xl font-bold text-white md:text-4xl">
-                  Ready to build something that lasts?
-                </h2>
-                <p className="mt-4 max-w-md text-white/75">
-                  Send a message and we will reply with a clear next step.
-                </p>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <Button href="/contact">Talk to us</Button>
+          <Reveal variant="fade">
+            <div className="relative overflow-hidden rounded-3xl border border-chalk-200 shadow-lift">
+              <div className="absolute inset-0">
+                <Image src={media.contact.src} alt="" fill className="object-cover" sizes="100vw" />
+                <div className="absolute inset-0 bg-[linear-gradient(100deg,rgb(7_17_31/0.94),rgb(7_17_31/0.72))]" />
+              </div>
+              <div className="relative grid gap-8 p-8 md:grid-cols-2 md:p-12 lg:p-16">
+                <div>
+                  <h2 className="font-display text-3xl font-bold text-white md:text-4xl">
+                    Ready to build something that lasts?
+                  </h2>
+                  <p className="mt-4 max-w-md text-white/75">
+                    Send a message and we will reply with a clear next step.
+                  </p>
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <Button href="/contact">Talk to us</Button>
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-md">
+                  <p className="text-xs font-semibold tracking-[0.14em] text-white/60 uppercase">
+                    Newsletter
+                  </p>
+                  <p className="mt-2 text-sm text-white/75">Engineering notes. No spam.</p>
+                  <div className="mt-4">
+                    <NewsletterForm variant="footer" />
+                  </div>
                 </div>
               </div>
-              <div className="rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-md">
-                <p className="text-xs font-semibold tracking-[0.14em] text-white/60 uppercase">
-                  Newsletter
-                </p>
-                <p className="mt-2 text-sm text-white/75">Engineering notes. No spam.</p>
-                <div className="mt-4">
-                  <NewsletterForm variant="footer" />
-                </div>
-              </div>
             </div>
-          </div>
+          </Reveal>
         </Container>
       </section>
     </>

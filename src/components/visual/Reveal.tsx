@@ -8,22 +8,24 @@ import {
   type CSSProperties,
   type ReactNode,
 } from "react";
+import { usePathname } from "next/navigation";
 
 type RevealVariant = "up" | "left" | "right" | "scale" | "fade" | "rise" | "blur";
 
-function bootAlreadyDone(): boolean {
-  if (typeof window === "undefined") return false;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return true;
-  try {
-    return sessionStorage.getItem("avero-boot") === "1";
-  } catch {
-    return true;
-  }
+function prefersReducedMotion(): boolean {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function siteIsReady(): boolean {
+  return (
+    document.documentElement.classList.contains("avero-ready") ||
+    prefersReducedMotion()
+  );
 }
 
 /**
- * Scroll-triggered reveal. Arms hidden styles before paint, then waits for
- * boot + intersection so first load and client navigations both animate.
+ * Scroll-triggered reveal for every section.
+ * Arms hidden styles before paint, waits for boot, then observes reliably.
  */
 export function Reveal({
   children,
@@ -37,18 +39,20 @@ export function Reveal({
   delay?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
   const [armed, setArmed] = useState(false);
   const [visible, setVisible] = useState(false);
 
+  // Reset when the route changes so client navigations animate again.
   useLayoutEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) {
+    setVisible(false);
+    if (prefersReducedMotion()) {
       setVisible(true);
+      setArmed(false);
       return;
     }
-    // Apply "from" styles before the browser paints so the transition can run.
     setArmed(true);
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     if (!armed || visible) return;
@@ -59,9 +63,11 @@ export function Reveal({
     let delayTimer = 0;
     let startTimer = 0;
     let fallbackTimer = 0;
+    let revealed = false;
 
     const reveal = () => {
-      if (cancelled) return;
+      if (cancelled || revealed) return;
+      revealed = true;
       window.clearTimeout(delayTimer);
       delayTimer = window.setTimeout(() => {
         if (!cancelled) setVisible(true);
@@ -70,25 +76,25 @@ export function Reveal({
 
     const inView = () => {
       const rect = node.getBoundingClientRect();
-      const vh = window.innerHeight || 0;
-      return rect.top < vh * 0.92 && rect.bottom > 0;
+      const vh = window.innerHeight || document.documentElement.clientHeight || 0;
+      // Generous: any overlap with the viewport counts.
+      return rect.bottom > 24 && rect.top < vh - 24;
     };
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
           observer.disconnect();
-          // One frame after arming so opacity:0 is committed before reveal-in.
           requestAnimationFrame(() => {
             requestAnimationFrame(() => reveal());
           });
         }
       },
-      { threshold: 0.1, rootMargin: "0px 0px -6% 0px" },
+      { threshold: [0, 0.05, 0.1], rootMargin: "0px 0px -4% 0px" },
     );
 
     const startObserving = () => {
-      if (cancelled) return;
+      if (cancelled || revealed) return;
       observer.observe(node);
       if (inView()) {
         observer.disconnect();
@@ -100,20 +106,18 @@ export function Reveal({
 
     const onBootDone = () => {
       window.clearTimeout(startTimer);
-      startTimer = window.setTimeout(startObserving, 40);
+      startTimer = window.setTimeout(startObserving, 48);
     };
 
-    if (bootAlreadyDone() || document.documentElement.classList.contains("avero-ready")) {
-      startTimer = window.setTimeout(startObserving, 40);
+    if (siteIsReady()) {
+      startTimer = window.setTimeout(startObserving, 48);
     } else {
       window.addEventListener("avero:boot-done", onBootDone);
-      // Safety if the event was missed
-      startTimer = window.setTimeout(startObserving, 2600);
+      startTimer = window.setTimeout(startObserving, 2400);
     }
 
-    fallbackTimer = window.setTimeout(() => {
-      if (!cancelled) setVisible(true);
-    }, 5000);
+    // Never leave content stuck invisible.
+    fallbackTimer = window.setTimeout(() => reveal(), 4200);
 
     return () => {
       cancelled = true;
@@ -123,7 +127,7 @@ export function Reveal({
       observer.disconnect();
       window.removeEventListener("avero:boot-done", onBootDone);
     };
-  }, [armed, delay, visible]);
+  }, [armed, delay, visible, pathname]);
 
   const readyClass =
     variant === "left"

@@ -116,12 +116,14 @@
     isolation: isolate;
     overflow: hidden;
     min-height: min(92vh, 880px);
+    perspective: 1400px;
   }
 
   .hero-plane__media {
     position: absolute;
-    inset: 0;
+    inset: -6%;
     z-index: 0;
+    transform-style: preserve-3d;
   }
 
   .hero-plane__veil {
@@ -460,7 +462,15 @@
   }
 
   .avero-js.avero-ready .hero-ken {
-    animation: ken 20s ease-out forwards;
+    will-change: transform;
+    transform-origin: 52% 48%;
+    animation: hero-orbit 28s ease-in-out infinite alternate;
+  }
+
+  .avero-js.avero-ready .page-hero-ken {
+    will-change: transform;
+    transform-origin: 60% 40%;
+    animation: hero-orbit 32s ease-in-out infinite alternate-reverse;
   }
 }
 
@@ -535,9 +545,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .avero-js.avero-ready .hero-ken,
+  .avero-js.avero-ready .page-hero-ken,
   .avero-js:not(.avero-ready) .stagger-in > *,
   .avero-js.avero-ready .stagger-in > *,
-  .avero-js.avero-ready .hero-ken,
   .reveal-ready,
   .reveal-ready-left,
   .reveal-ready-right,
@@ -576,6 +587,21 @@
 @keyframes ken {
   from { transform: scale(1); }
   to { transform: scale(1.08); }
+}
+
+@keyframes hero-orbit {
+  0% {
+    transform: scale(1.12) translate3d(-2.4%, 1.2%, 0) rotate(-1.1deg);
+  }
+  35% {
+    transform: scale(1.18) translate3d(2.2%, -1.6%, 0) rotate(0.9deg);
+  }
+  70% {
+    transform: scale(1.15) translate3d(-1.4%, 2%, 0) rotate(-0.5deg);
+  }
+  100% {
+    transform: scale(1.2) translate3d(1.8%, -0.8%, 0) rotate(1.2deg);
+  }
 }
 
 @keyframes page-sweep {

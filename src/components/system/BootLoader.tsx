@@ -2,14 +2,16 @@
 
 import { useLayoutEffect, useState } from "react";
 
+const BOOT_KEY = "avero-boot";
+
 function markReady() {
   document.documentElement.classList.add("avero-ready");
   window.dispatchEvent(new Event("avero:boot-done"));
 }
 
 /**
- * Avero Signal Boot: first-visit full-screen loader (session-once).
- * Marks html.avero-ready when finished so page fades/stagger run after the veil lifts.
+ * Avero Signal Boot: first-visit loader (session-once).
+ * Session cache only stores a tiny boot flag — never blocks the site if storage fails.
  */
 export function BootLoader() {
   const [phase, setPhase] = useState<"boot" | "exit" | "done">("boot");
@@ -20,8 +22,9 @@ export function BootLoader() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let seen = false;
     try {
-      seen = sessionStorage.getItem("avero-boot") === "1";
+      seen = sessionStorage.getItem(BOOT_KEY) === "1";
     } catch {
+      // Private mode / blocked storage: skip boot, never break the site.
       seen = true;
     }
 
@@ -37,18 +40,26 @@ export function BootLoader() {
     const exitAt = window.setTimeout(() => setPhase("exit"), 1450);
     const doneAt = window.setTimeout(() => {
       try {
-        sessionStorage.setItem("avero-boot", "1");
+        sessionStorage.setItem(BOOT_KEY, "1");
       } catch {
-        /* ignore */
+        /* ignore — site must still unlock */
       }
       document.body.style.overflow = prevOverflow;
       setPhase("done");
       markReady();
     }, 2100);
 
+    // Absolute safety: never leave the page locked behind the boot veil.
+    const safetyAt = window.setTimeout(() => {
+      document.body.style.overflow = prevOverflow;
+      setPhase("done");
+      markReady();
+    }, 3500);
+
     return () => {
       window.clearTimeout(exitAt);
       window.clearTimeout(doneAt);
+      window.clearTimeout(safetyAt);
       document.body.style.overflow = prevOverflow;
     };
   }, []);
