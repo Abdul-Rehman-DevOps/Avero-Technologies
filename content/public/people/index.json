@@ -6,14 +6,14 @@
     "leadershipLevel": "c-level",
     "team": "corporate",
     "expertise": [
-      "Business leadership",
-      "Client partnerships",
-      "Growth strategy",
-      "Company direction",
-      "Market development"
+      "Software engineering",
+      "Cloud architecture",
+      "Platform delivery",
+      "DevSecOps",
+      "AI systems"
     ],
     "locationId": null,
-    "bioPublic": "Leads Avero Technologies with a focus on client outcomes, partnerships, and company direction across software, cloud, and AI engagements.",
+    "bioPublic": "Leads Avero Technologies with a focus on client outcomes, partnerships, and production systems across software, cloud, platforms, security, and AI.",
     "imagePublic": "/people/ceo.png",
     "links": { "linkedin": null },
     "visibility": "public",
