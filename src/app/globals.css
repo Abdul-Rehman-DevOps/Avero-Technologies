@@ -378,8 +378,9 @@
   }
 
   .nav-mega {
-    @apply absolute left-0 top-full z-[60] mt-3 w-[min(94vw,860px)] border border-chalk-200 bg-paper/95 p-5;
+    @apply absolute left-0 top-full z-[60] mt-3 w-[min(94vw,860px)] border border-chalk-200 p-5;
     border-radius: 22px;
+    background: rgb(255 255 255 / 0.95);
     box-shadow: 0 28px 70px rgb(5 11 20 / 0.16);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
