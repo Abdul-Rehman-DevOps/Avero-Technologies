@@ -27,7 +27,9 @@ export function SiteFooter() {
         <Container className="relative grid gap-10 py-16 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <Logo inverted markClassName="h-11 w-11" />
-            <p className="mt-5 max-w-md text-lg text-[var(--footer-fg)]">{siteConfig.tagline}</p>
+            <p className="mt-5 max-w-md text-lg leading-relaxed text-[var(--footer-fg)]">
+              {siteConfig.tagline}
+            </p>
             <p className="mt-4 max-w-md text-sm text-[var(--footer-muted)]">
               Software, cloud, AI, platforms, security, and data engineered for production.
             </p>

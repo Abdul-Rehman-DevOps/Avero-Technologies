@@ -31,7 +31,7 @@ const config: Config = {
       fontFamily: {
         display: [
           "var(--font-display)",
-          "Space Grotesk",
+          "Syne",
           "Segoe UI",
           "ui-sans-serif",
           "system-ui",
@@ -39,7 +39,7 @@ const config: Config = {
         ],
         sans: [
           "var(--font-sans)",
-          "Source Sans 3",
+          "Outfit",
           "Segoe UI",
           "ui-sans-serif",
           "system-ui",
@@ -53,18 +53,19 @@ const config: Config = {
         ],
       },
       borderRadius: {
-        sm: "6px",
-        md: "10px",
-        lg: "16px",
-        xl: "24px",
+        sm: "8px",
+        md: "12px",
+        lg: "18px",
+        xl: "28px",
       },
       maxWidth: {
-        site: "1200px",
+        site: "1180px",
         prose: "680px",
       },
       boxShadow: {
-        lift: "0 18px 50px rgba(7, 17, 31, 0.12)",
-        soft: "0 8px 24px rgba(7, 17, 31, 0.06)",
+        lift: "0 24px 60px rgba(7, 17, 31, 0.14)",
+        soft: "0 10px 30px rgba(7, 17, 31, 0.07)",
+        glow: "0 0 0 1px rgba(13, 143, 156, 0.25), 0 12px 40px rgba(13, 143, 156, 0.18)",
       },
       keyframes: {
         "fade-up": {

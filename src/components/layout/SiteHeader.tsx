@@ -162,7 +162,7 @@ function DesktopItem({
     return (
       <Link
         href={item.href}
-        className="rounded-lg px-3 py-2 text-sm font-medium text-ink-700 no-underline transition-colors hover:bg-chalk-100 hover:text-ink-950"
+        className="rounded-xl px-3.5 py-2 text-sm font-medium text-ink-700 no-underline transition-all hover:bg-signal-subtle hover:text-ink-950"
       >
         {item.label}
       </Link>
@@ -175,8 +175,8 @@ function DesktopItem({
     <div className="relative">
       <button
         type="button"
-        className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
-          open ? "bg-chalk-100 text-ink-950" : "text-ink-700 hover:bg-chalk-100 hover:text-ink-950"
+        className={`rounded-xl px-3.5 py-2 text-sm font-medium transition-all ${
+          open ? "bg-signal-subtle text-ink-950" : "text-ink-700 hover:bg-signal-subtle hover:text-ink-950"
         }`}
         aria-expanded={open}
         aria-haspopup="true"

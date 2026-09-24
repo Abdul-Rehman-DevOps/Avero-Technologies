@@ -42,7 +42,7 @@ export function PageHero({
       </div>
       <Container className="relative py-16 md:py-20 lg:py-24">
         <Reveal variant="rise">
-          <div className="max-w-3xl rounded-3xl bg-paper/92 p-6 shadow-[0_12px_40px_rgb(7_17_31/0.08)] md:p-8">
+          <div className="page-hero__panel max-w-3xl rounded-[1.75rem] p-6 md:p-9">
             {crumbs?.length ? (
               <nav aria-label="Breadcrumb" className="mb-5">
                 <ol className="flex flex-wrap items-center gap-2 text-sm text-ink-600">
@@ -62,11 +62,11 @@ export function PageHero({
               </nav>
             ) : null}
             {label ? <p className="tech-label text-signal">{label}</p> : null}
-            <h1 className="font-display mt-3 text-4xl font-bold tracking-tight text-ink-950 md:text-5xl lg:text-6xl">
+            <h1 className="font-display mt-3 text-4xl font-bold tracking-tight text-ink-950 md:text-5xl lg:text-[3.75rem] lg:leading-[1.05]">
               {title}
             </h1>
             {description ? (
-              <p className="mt-5 text-lg leading-relaxed text-ink-700">{description}</p>
+              <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-700">{description}</p>
             ) : null}
           </div>
         </Reveal>
