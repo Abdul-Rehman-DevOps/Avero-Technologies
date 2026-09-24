@@ -1,0 +1,33 @@
+# Dependencies & build caches
+node_modules
+npm-debug.log*
+.git
+.github
+.cursor
+.next
+out
+coverage
+test-results
+playwright-report
+*.tsbuildinfo
+
+# Local / secrets
+.env
+.env.*
+!.env.example
+
+# Docs & tooling not needed in the image build context
+docs
+README.md
+**/*.test.ts
+**/*.test.tsx
+vitest.config.ts
+vitest.setup.ts
+playwright.config.ts
+e2e
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea
+.vscode

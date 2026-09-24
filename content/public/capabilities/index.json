@@ -1,0 +1,186 @@
+[
+  {
+    "id": "ai",
+    "slug": "ai",
+    "name": "Avero AI",
+    "shortName": "AI",
+    "summary": "Intelligent systems spanning generative AI, machine learning, agents, and AI infrastructure.",
+    "mandate": "Design, build, and operationalize AI systems that are measurable, secure, and production-ready.",
+    "capabilities": [
+      "Generative AI",
+      "Machine Learning",
+      "LLM applications",
+      "AI agents",
+      "RAG systems",
+      "Computer vision",
+      "AI infrastructure",
+      "GPU computing",
+      "AI automation",
+      "AI security"
+    ],
+    "relatedServiceSlugs": ["generative-ai-systems", "rag-and-knowledge-systems", "ai-agents-and-automation"],
+    "status": "active",
+    "visibility": "public",
+    "seo": {
+      "title": "Avero AI",
+      "description": "AI and intelligent systems engineering from Avero Technologies."
+    }
+  },
+  {
+    "id": "engineering",
+    "slug": "engineering",
+    "name": "Avero Engineering",
+    "shortName": "Engineering",
+    "summary": "Software and systems engineering for web, API, SaaS, and distributed applications.",
+    "mandate": "Deliver reliable software architectures that scale with product and organizational growth.",
+    "capabilities": [
+      "Frontend engineering",
+      "Backend engineering",
+      "API engineering",
+      "SaaS platforms",
+      "Microservices",
+      "Distributed systems",
+      "Application modernization",
+      "Mobile applications",
+      "Enterprise software"
+    ],
+    "relatedServiceSlugs": ["software-engineering", "saas-platforms", "application-modernization"],
+    "status": "active",
+    "visibility": "public",
+    "seo": {
+      "title": "Avero Engineering",
+      "description": "Software and systems engineering capabilities from Avero."
+    }
+  },
+  {
+    "id": "cloud",
+    "slug": "cloud",
+    "name": "Avero Cloud",
+    "shortName": "Cloud",
+    "summary": "Cloud architecture, migration, infrastructure as code, and multi-cloud engineering.",
+    "mandate": "Build secure, cost-aware cloud foundations across AWS, Azure, and Google Cloud.",
+    "capabilities": [
+      "AWS",
+      "Microsoft Azure",
+      "Google Cloud",
+      "Multi-cloud",
+      "Cloud architecture",
+      "Cloud migration",
+      "Infrastructure as Code",
+      "FinOps",
+      "Cloud networking",
+      "Cloud security"
+    ],
+    "relatedServiceSlugs": ["cloud-architecture", "cloud-migration", "infrastructure-as-code"],
+    "status": "active",
+    "visibility": "public",
+    "seo": {
+      "title": "Avero Cloud",
+      "description": "Cloud and infrastructure engineering from Avero Technologies."
+    }
+  },
+  {
+    "id": "platform",
+    "slug": "platform",
+    "name": "Avero Platform",
+    "shortName": "Platform",
+    "summary": "DevOps, platform engineering, CI/CD, Kubernetes, and reliability practices.",
+    "mandate": "Create developer platforms and delivery systems that improve velocity without sacrificing control.",
+    "capabilities": [
+      "DevOps",
+      "DevSecOps",
+      "Kubernetes",
+      "Docker",
+      "CI/CD",
+      "GitOps",
+      "Argo CD",
+      "Platform engineering",
+      "SRE",
+      "Infrastructure automation",
+      "Developer platforms"
+    ],
+    "relatedServiceSlugs": ["devops-and-cicd", "platform-engineering", "site-reliability-engineering"],
+    "status": "active",
+    "visibility": "public",
+    "seo": {
+      "title": "Avero Platform",
+      "description": "Platform, DevOps, and reliability engineering from Avero."
+    }
+  },
+  {
+    "id": "security",
+    "slug": "security",
+    "name": "Avero Security",
+    "shortName": "Security",
+    "summary": "Security engineering across applications, cloud, containers, identity, and detection.",
+    "mandate": "Embed secure-by-design practices into engineering and operations.",
+    "capabilities": [
+      "Application security",
+      "Cloud security",
+      "DevSecOps",
+      "Container security",
+      "Kubernetes security",
+      "Identity and access management",
+      "Zero Trust",
+      "Security automation",
+      "Vulnerability management",
+      "SIEM",
+      "Threat detection"
+    ],
+    "relatedServiceSlugs": ["devsecops", "application-security", "cloud-security-engineering"],
+    "status": "active",
+    "visibility": "public",
+    "seo": {
+      "title": "Avero Security",
+      "description": "Cybersecurity and security engineering from Avero Technologies."
+    }
+  },
+  {
+    "id": "data",
+    "slug": "data",
+    "name": "Avero Data",
+    "shortName": "Data",
+    "summary": "Data platforms, pipelines, analytics infrastructure, and streaming systems.",
+    "mandate": "Engineer trustworthy data foundations for analytics and AI workloads.",
+    "capabilities": [
+      "Data engineering",
+      "Data platforms",
+      "Data pipelines",
+      "Analytics infrastructure",
+      "Data lakes",
+      "Data warehouses",
+      "Streaming",
+      "Real-time processing",
+      "AI data infrastructure"
+    ],
+    "relatedServiceSlugs": ["data-engineering", "data-platforms"],
+    "status": "active",
+    "visibility": "public",
+    "seo": {
+      "title": "Avero Data",
+      "description": "Data engineering and intelligent data infrastructure from Avero."
+    }
+  },
+  {
+    "id": "labs",
+    "slug": "labs",
+    "name": "Avero Labs",
+    "shortName": "Labs",
+    "summary": "Research and experimentation in emerging technology areas.",
+    "mandate": "Explore advanced and emerging technologies without overstating commercial readiness.",
+    "capabilities": [
+      "Advanced AI research",
+      "Edge computing exploration",
+      "IoT architecture studies",
+      "Autonomous systems research",
+      "Emerging compute paradigms"
+    ],
+    "relatedServiceSlugs": ["emerging-technologies"],
+    "status": "research",
+    "visibility": "public",
+    "seo": {
+      "title": "Avero Labs",
+      "description": "Research and emerging technology initiatives from Avero Labs."
+    }
+  }
+]

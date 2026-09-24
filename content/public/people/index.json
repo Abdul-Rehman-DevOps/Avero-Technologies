@@ -1,0 +1,16 @@
+[
+  {
+    "slug": "abdul-rehman",
+    "displayName": "Abdul Rehman",
+    "roleTitle": "Chief Executive Officer & Chief Technology Officer",
+    "leadershipLevel": "c-level",
+    "team": "corporate",
+    "expertise": ["Software engineering", "Cloud", "Platforms", "Security engineering", "AI systems"],
+    "locationId": null,
+    "bioPublic": "Abdul Rehman leads Avero Technologies as CEO and CTO, with focus on software systems, cloud platforms, security engineering, and AI delivery for production workloads.",
+    "imagePublic": "/people/abdul-rehman.jpg",
+    "links": { "linkedin": null },
+    "visibility": "public",
+    "showOnLeadership": true
+  }
+]

@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run validate:content
+      - run: npm run build
+      - name: Dependency audit (high+)
+        run: npm audit --audit-level=high
+        continue-on-error: true
+      - name: Secret scan (basic)
+        run: |
+          if grep -RInE "(RESEND_API_KEY|AWS_SECRET|PRIVATE_KEY|BEGIN RSA)" --exclude-dir=node_modules --exclude-dir=.next --exclude-dir=.git . ; then
+            echo "Potential secret material found"
+            exit 1
+          fi
+          echo "Basic secret scan passed"
