@@ -19,12 +19,11 @@ export default async function CapabilitiesPage() {
   return (
     <>
       <PageHero
-        index="CAP"
-        label="SYSTEM"
+        mediaKey="data"
+        label="Capabilities"
         title="Capabilities"
-        description="Organizational engineering domains. Select a node to inspect mandate, connected systems, and related technologies. Commercial engagements live under Services."
+        description="What we build across AI, software, cloud, platform, security, and data. Pick a domain to see focus areas and related services."
         crumbs={[{ label: "Home", href: "/" }, { label: "Capabilities" }]}
-        identity="map"
       />
       <Section>
         <Container>
@@ -33,7 +32,7 @@ export default async function CapabilitiesPage() {
           </Reveal>
         </Container>
       </Section>
-      <CtaBand title="Need a capability-aligned engagement?" />
+      <CtaBand title="Want help in this area?" />
     </>
   );
 }

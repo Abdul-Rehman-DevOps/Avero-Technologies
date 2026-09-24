@@ -17,7 +17,7 @@ type DetailTabsProps = {
   eyebrow?: string;
 };
 
-export function DetailTabs({ tabs, eyebrow = "Engagement detail" }: DetailTabsProps) {
+export function DetailTabs({ tabs, eyebrow = "Details" }: DetailTabsProps) {
   const [active, setActive] = useState(tabs[0]?.id ?? "");
   const baseId = useId();
   const current = tabs.find((t) => t.id === active) ?? tabs[0];

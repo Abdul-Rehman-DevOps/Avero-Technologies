@@ -25,4 +25,5 @@ seo:
   description: "Avero case study: signed artifacts and identity-based CI/CD promotion."
 ---
 
-Reference architecture pattern for secure software delivery without slowing product teams.
+A product organization needed faster releases without trusting developer machines or long-lived cloud credentials. We introduced signed artifacts, short-lived identity, and policy gates so every promotion stage had to prove itself before moving forward.
+

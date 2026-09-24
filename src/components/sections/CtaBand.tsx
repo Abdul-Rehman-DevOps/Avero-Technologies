@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Section";
 import { Reveal } from "@/components/visual/Reveal";
-import { siteConfig } from "@/lib/site";
 
 type CtaBandProps = {
   title?: string;
@@ -13,8 +12,8 @@ type CtaBandProps = {
 };
 
 export function CtaBand({
-  title = "Tell us what you need next",
-  description = `Email ${siteConfig.email} or send a message — general questions and project ideas are both welcome.`,
+  title = "Ready to talk?",
+  description = "Send a message — general questions and project ideas are both welcome. We reply with a clear next step.",
   primaryHref = "/contact",
   primaryLabel = "Talk to us",
 }: CtaBandProps) {
@@ -23,16 +22,13 @@ export function CtaBand({
       <Container>
         <Reveal variant="fade">
           <div className="rounded-3xl border border-white/15 p-8 md:p-12">
-            <p className="text-xs font-semibold tracking-[0.16em] text-signal uppercase">Next step</p>
+            <p className="text-xs font-semibold tracking-[0.12em] text-signal">Next step</p>
             <h2 className="font-display mt-4 max-w-3xl text-3xl text-balance md:text-5xl">{title}</h2>
             <p className="mt-4 max-w-2xl text-lg" style={{ color: "var(--footer-muted)" }}>
               {description}
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8">
               <Button href={primaryHref}>{primaryLabel}</Button>
-              <Button href={`mailto:${siteConfig.email}`} variant="ghost">
-                {siteConfig.email}
-              </Button>
             </div>
           </div>
         </Reveal>

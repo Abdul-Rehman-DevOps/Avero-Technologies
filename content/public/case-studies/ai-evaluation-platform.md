@@ -25,4 +25,5 @@ seo:
   description: "Avero case study: evaluation and policy controls for production generative AI."
 ---
 
-Anonymized architecture case study focused on governance and delivery, not model marketing claims.
+Product teams were shipping generative AI features without a shared evaluation path, so quality and safety reviews varied by team. We built a governed evaluation platform with policy gates before production promotion.
+

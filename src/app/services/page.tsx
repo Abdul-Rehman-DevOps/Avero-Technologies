@@ -24,7 +24,7 @@ export default async function ServicesPage() {
         mediaKey="engineering"
         label="Services"
         title="Engineering services"
-        description="Commercial engagements mapped to the domains we engineer: software, AI, cloud, platform, security, and data."
+        description="Start with a clear conversation. We clarify outcomes and constraints before proposing architecture or timeline."
         crumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
       />
       <Section>
@@ -32,13 +32,13 @@ export default async function ServicesPage() {
           <Reveal>
             <div className="flex flex-col gap-4 rounded-3xl border border-chalk-200 bg-paper p-6 md:flex-row md:items-center md:justify-between md:p-8">
               <div>
-                <p className="tech-label text-signal">How engagement works</p>
+                <p className="tech-label text-signal">Getting started</p>
                 <p className="mt-2 max-w-2xl text-ink-600">
-                  Start with a scoped conversation. We clarify outcomes, constraints, and the first
-                  delivery slice before proposing architecture or timeline.
+                  Tell us what you need. We clarify outcomes, constraints, and the first delivery
+                  slice before proposing architecture or timeline.
                 </p>
               </div>
-              <Button href="/contact">Start intake</Button>
+              <Button href="/contact">Talk to us</Button>
             </div>
           </Reveal>
 

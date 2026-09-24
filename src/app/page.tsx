@@ -325,9 +325,6 @@ export default async function HomePage() {
                 <Button href="/careers" variant="ghost">
                   Careers
                 </Button>
-                <Button href={`mailto:${siteConfig.email}`} variant="ghost" showArrow={false}>
-                  Email support
-                </Button>
               </div>
             </Reveal>
             <Reveal className="lg:col-span-6" variant="right">
@@ -433,13 +430,10 @@ export default async function HomePage() {
                   Ready to build something that lasts?
                 </h2>
                 <p className="mt-4 max-w-md text-white/75">
-                  Email us at {siteConfig.email} or call {siteConfig.phoneDisplay}.
+                  Send a message and we will reply with a clear next step.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Button href="/contact">Talk to us</Button>
-                  <Button href={`mailto:${siteConfig.email}`} variant="ghost">
-                    {siteConfig.email}
-                  </Button>
                 </div>
               </div>
               <div className="rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-md">

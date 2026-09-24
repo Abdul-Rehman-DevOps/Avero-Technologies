@@ -55,7 +55,7 @@ export default async function PeoplePage() {
         mediaKey="team"
         label="People"
         title="Our team"
-        description="Public profiles for approved team members."
+        description="Team members we publish on the site."
         crumbs={[
           { label: "Home", href: "/" },
           { label: "About", href: "/about" },

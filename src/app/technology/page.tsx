@@ -34,19 +34,18 @@ export default async function TechnologyPage() {
   return (
     <>
       <PageHero
-        index="TEC"
-        label="ECOSYSTEM"
+        mediaKey="cloud"
+        label="Technology"
         title="Technology"
-        description="Evidence of engineering capability, structured by domain. Not a vendor logo wall."
+        description="Tools and platforms we use in delivery — grouped by domain, not a logo wall."
         crumbs={[{ label: "Home", href: "/" }, { label: "Technology" }]}
-        identity="ecosystem"
       />
       <Section>
         <Container>
           <Reveal>
             <SystemFrame substrate className="p-6 md:p-10">
               <div className="mb-8 flex flex-col gap-2 border-b border-chalk-200 pb-6 md:flex-row md:items-end md:justify-between">
-                <p className="tech-label">STRUCTURED BY ENGINEERING DOMAIN</p>
+                <p className="tech-label">By engineering domain</p>
                 <Link href="/engineering" className="text-sm text-arc no-underline hover:text-signal">
                   Engineering method →
                 </Link>

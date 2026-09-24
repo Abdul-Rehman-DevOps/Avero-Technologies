@@ -22,7 +22,7 @@ export default async function IndustriesPage() {
         mediaKey="office"
         label="Industries"
         title="Where we apply systems thinking"
-        description="Sector-specific constraints shape architecture. Browse where Avero capabilities map to real operating environments."
+        description="Sector-specific constraints shape architecture. Browse where our engineering shows up in practice."
         crumbs={[{ label: "Home", href: "/" }, { label: "Industries" }]}
       />
       <Section>

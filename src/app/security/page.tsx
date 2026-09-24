@@ -1,5 +1,4 @@
 import { PageHero } from "@/components/layout/PageHero";
-import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Section";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { Reveal } from "@/components/visual/Reveal";
@@ -90,30 +89,24 @@ export default function SecurityPage() {
   return (
     <>
       <PageHero
-        index="SEC"
-        label="PRACTICE"
+        mediaKey="security"
+        label="Security"
         title="Security"
         description="Security is part of how we engineer. Controls belong in design, delivery, and operations."
         crumbs={[{ label: "Home", href: "/" }, { label: "Security" }]}
-        identity="control"
       />
       <Section>
         <Container>
           <div className="grid gap-10 lg:grid-cols-12">
             <Reveal className="lg:col-span-4" variant="left">
-              <p className="tech-label text-signal">ENGINEERING DISCIPLINE</p>
+              <p className="tech-label text-signal">Practice</p>
               <h2 className="font-display mt-3 text-2xl md:text-3xl">
-                Security is integrated into our engineering lifecycle.
+                Security is built into delivery — not bolted on later.
               </h2>
               <p className="mt-4 text-ink-600">
                 This page describes practices we apply in delivery. It is not a compliance claim and
                 does not list certifications.
               </p>
-              <div className="mt-8">
-                <Button href="/contact" variant="secondary">
-                  Discuss a security-minded engagement
-                </Button>
-              </div>
             </Reveal>
             <Reveal className="lg:col-span-8" variant="right">
               <SystemFrame className="overflow-hidden">
@@ -135,7 +128,7 @@ export default function SecurityPage() {
           </div>
         </Container>
       </Section>
-      <CtaBand title="Need security integrated into delivery?" />
+      <CtaBand title="Want security built into delivery?" />
     </>
   );
 }

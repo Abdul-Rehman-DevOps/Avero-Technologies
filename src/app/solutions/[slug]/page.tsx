@@ -131,7 +131,7 @@ export default async function SolutionDetailPage({ params }: Props) {
                 </div>
               ) : null}
 
-              <Button href="/contact">Discuss this solution</Button>
+              <Button href="/contact">Talk to us</Button>
               <div>
                 <Button href="/solutions" variant="secondary">
                   All solutions
@@ -141,7 +141,7 @@ export default async function SolutionDetailPage({ params }: Props) {
           </div>
         </Container>
       </Section>
-      <CtaBand title="Need a different outcome shape?" />
+      <CtaBand title="Questions about this solution?" />
     </>
   );
 }

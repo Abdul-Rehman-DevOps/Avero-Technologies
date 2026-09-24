@@ -78,7 +78,7 @@ export default async function CapabilityDetailPage({ params }: Props) {
         <Container>
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-4">
-              <p className="tech-label text-signal">Organizational domain</p>
+              <p className="tech-label text-signal">Capability area</p>
               <p className="mt-3 text-sm text-ink-600">
                 What Avero can engineer in this domain. Commercial offerings are listed under
                 Services.
@@ -153,7 +153,7 @@ export default async function CapabilityDetailPage({ params }: Props) {
           </div>
         </Container>
       </Section>
-      <CtaBand title="Need work in this capability?" />
+      <CtaBand title="Want to talk about this capability?" />
     </>
   );
 }

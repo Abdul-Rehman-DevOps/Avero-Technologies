@@ -16,8 +16,7 @@ export default function TermsPage() {
   return (
     <>
       <PageHero
-        index="LEG"
-        label="LEGAL"
+        label="Legal"
         title="Terms of Service"
         description={`Effective ${effectiveDate}. These terms govern use of the Avero Technologies website.`}
         crumbs={[{ label: "Home", href: "/" }, { label: "Terms of Service" }]}

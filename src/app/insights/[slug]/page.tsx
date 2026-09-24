@@ -49,7 +49,7 @@ export default async function ArticlePage({ params }: Props) {
       />
       <PageHero
         index="INS"
-        label="ARTICLE"
+        label="Insights"
         title={article.title}
         description={article.summary}
         crumbs={[

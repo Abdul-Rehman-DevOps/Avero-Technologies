@@ -78,7 +78,7 @@ export default async function JobPage({ params }: Props) {
             {job.applyUrl ? (
               <Button href={job.applyUrl}>Apply</Button>
             ) : (
-              <Button href="/contact">Apply via contact</Button>
+              <Button href="/contact">Talk to us about this role</Button>
             )}
           </div>
         </Container>

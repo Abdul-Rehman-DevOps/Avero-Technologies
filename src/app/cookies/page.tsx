@@ -16,8 +16,7 @@ export default function CookiesPage() {
   return (
     <>
       <PageHero
-        index="LEG"
-        label="LEGAL"
+        label="Legal"
         title="Cookie Policy"
         description={`Effective ${effectiveDate}. How this website uses cookies and similar storage.`}
         crumbs={[{ label: "Home", href: "/" }, { label: "Cookie Policy" }]}

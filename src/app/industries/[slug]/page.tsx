@@ -88,7 +88,7 @@ export default async function IndustryDetailPage({ params }: Props) {
                 </p>
                 <div className="mt-6">
                   <Button href="/contact" size="sm">
-                    Discuss this industry
+                    Talk to us
                   </Button>
                 </div>
               </div>
@@ -98,7 +98,7 @@ export default async function IndustryDetailPage({ params }: Props) {
           {related.length > 0 ? (
             <Reveal className="mt-14">
               <p className="tech-label text-signal">Related services</p>
-              <h2 className="font-display mt-3 text-2xl font-bold">Start with these engagements</h2>
+              <h2 className="font-display mt-3 text-2xl font-bold">Related services</h2>
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 {related.map((service) => (
                   <Link

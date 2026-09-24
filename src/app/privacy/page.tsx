@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/site";
 
 export const metadata = buildMetadata({
   title: "Privacy Policy",
-  description: "Privacy Policy for the Avero Technologies website and contact intake.",
+  description: "Privacy Policy for the Avero Technologies website and contact form.",
   path: "/privacy",
 });
 
@@ -16,12 +16,10 @@ export default function PrivacyPage() {
   return (
     <>
       <PageHero
-        index="LEG"
-        label="LEGAL"
+        label="Legal"
         title="Privacy Policy"
         description={`Effective ${effectiveDate}. How Avero Technologies handles personal data on this website.`}
         crumbs={[{ label: "Home", href: "/" }, { label: "Privacy Policy" }]}
-        identity="default"
       />
       <Section>
         <Container className="max-w-3xl">
@@ -92,7 +90,7 @@ export default function PrivacyPage() {
             <h2>6. Security</h2>
             <p>
               We apply reasonable technical and organizational measures (HTTPS, security headers,
-              validation, and rate limiting on intake). No method of transmission or storage is
+              validation, and rate limiting on the contact form). No method of transmission or storage is
               completely secure. Do not send secrets or highly sensitive personal data through website
               forms.
             </p>

@@ -25,4 +25,5 @@ seo:
   description: "Avero case study: identity-first multi-cloud landing zones with shared security guardrails."
 ---
 
-Reference engagement pattern published with anonymized details. Metrics describe verified delivery outcomes for this architecture style.
+A regulated SaaS company needed consistent identity, network, and logging baselines across AWS and Azure without freezing product work. We delivered identity-first landing zones with shared guardrails and a reusable architecture pack for later regions.
+

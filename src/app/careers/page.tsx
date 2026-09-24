@@ -65,7 +65,7 @@ export default async function CareersPage() {
                   <div className="p-6 text-sm text-ink-600">
                     No open roles right now. Send a note via{" "}
                     <Link href="/contact" className="font-semibold text-signal no-underline">
-                      Contact
+                      Talk to us
                     </Link>{" "}
                     if you want to introduce yourself.
                   </div>
@@ -94,7 +94,7 @@ export default async function CareersPage() {
               </div>
               <div className="mt-6">
                 <Button href="/contact" variant="secondary">
-                  General inquiry
+                  Talk to us
                 </Button>
               </div>
             </Reveal>

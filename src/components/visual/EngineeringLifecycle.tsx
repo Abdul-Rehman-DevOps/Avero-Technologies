@@ -73,7 +73,7 @@ export function EngineeringLifecycle() {
         })}
       </ol>
       <aside className="diagram-frame diagram-substrate p-6 md:p-8" aria-live="polite">
-        <p className="tech-label">LIFECYCLE · {current.title.toUpperCase()}</p>
+        <p className="tech-label">{current.title} phase</p>
         <h3 className="font-display mt-3 text-3xl">{current.title}</h3>
         <p className="mt-4 text-ink-600">{current.body}</p>
       </aside>

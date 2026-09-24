@@ -5,8 +5,8 @@ import { PlaceholderNotice } from "@/components/ui/PlaceholderNotice";
 
 describe("Button", () => {
   it("renders a link button", () => {
-    render(<Button href="/contact">Start a Conversation</Button>);
-    expect(screen.getByRole("link", { name: "Start a Conversation" })).toHaveAttribute(
+    render(<Button href="/contact">Talk to us</Button>);
+    expect(screen.getByRole("link", { name: "Talk to us" })).toHaveAttribute(
       "href",
       "/contact",
     );

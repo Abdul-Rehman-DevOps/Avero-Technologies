@@ -14,7 +14,7 @@ technology:
 engineeringChallenge: "Designing defaults that were secure enough for security review yet flexible enough for product edge cases."
 securityConsiderations: "Template-level SAST/SCA, secret injection patterns, and signed artifact promotion."
 implementation: "Pilot with two product teams, then organization-wide rollout with office hours and scorecards."
-results: "Median time-to-first-environment dropped dramatically; security findings shifted earlier into pull requests."
+results: "Median time-to-first-environment fell from weeks to under a day for pilot teams; security findings shifted earlier into pull requests."
 lessonsLearned: "Platform adoption follows trust — publish SLOs and treat product teams as customers."
 clientDisplayName: null
 capabilities: ["platform", "engineering", "security"]
@@ -25,4 +25,5 @@ seo:
   description: "Avero case study: paved-road developer platforms with secure delivery defaults."
 ---
 
-Reference case study describing a reusable platform pattern delivered by Avero Technologies.
+Service teams were waiting on tickets for environments and pipelines, which slowed delivery and created uneven security posture. We built a paved-road platform with self-service defaults so new services started secure and ready to ship.
+

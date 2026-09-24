@@ -21,8 +21,8 @@ export default async function SolutionsPage() {
       <PageHero
         mediaKey="delivery"
         label="Solutions"
-        title="Problems we organize around"
-        description="Outcome packages that combine multiple services. Not product brand names."
+        title="Solutions we deliver"
+        description="Packaged outcomes that combine our services — described by problem and result."
         crumbs={[{ label: "Home", href: "/" }, { label: "Solutions" }]}
       />
       <Section>
@@ -54,7 +54,7 @@ export default async function SolutionsPage() {
           </div>
         </Container>
       </Section>
-      <CtaBand title="Need a different outcome?" />
+      <CtaBand title="Don’t see your scenario?" />
     </>
   );
 }

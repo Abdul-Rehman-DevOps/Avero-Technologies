@@ -96,7 +96,7 @@
 
   .tech-label,
   .mono-label {
-    @apply font-mono text-[11px] font-medium tracking-[0.14em] text-ink-400 uppercase;
+    @apply font-mono text-[11px] font-medium tracking-[0.12em] text-ink-400;
   }
 
   .site-header {

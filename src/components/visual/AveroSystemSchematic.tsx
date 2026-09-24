@@ -84,10 +84,10 @@ export function AveroSystemSchematic({
       >
         <div className="flex items-center justify-between gap-3 border-b border-chalk-200 px-3 py-2.5">
           <p id={titleId} className="tech-label text-ink-600">
-            AVERO · SYSTEM SCHEMATIC · REV 04
+            Avero system map
           </p>
           <p className="tech-label shrink-0 text-signal">
-            {focusId ? `ACTIVE · ${focusId.toUpperCase()}` : "CORE ONLINE"}
+            {focusId ? `Focus · ${focusId}` : "Core online"}
           </p>
         </div>
 

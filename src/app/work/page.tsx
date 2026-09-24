@@ -24,7 +24,7 @@ export default async function WorkPage() {
         mediaKey="delivery"
         label="Case studies"
         title="Architecture that shipped"
-        description="Anonymized engagements with problem, architecture, implementation, and outcomes."
+        description="Real-world examples: problem, approach, and results. Client details are anonymized where needed."
         crumbs={[{ label: "Home", href: "/" }, { label: "Case Studies" }]}
       />
       <Section>
@@ -44,7 +44,7 @@ export default async function WorkPage() {
           {published.length === 0 ? (
             <div className="rounded-3xl border border-chalk-200 bg-paper p-8 text-center">
               <p className="font-display text-2xl font-semibold">Case studies coming soon</p>
-              <p className="mt-3 text-ink-600">Discuss a project and we will share relevant patterns.</p>
+              <p className="mt-3 text-ink-600">Talk to us and we will share relevant patterns.</p>
               <div className="mt-6">
                 <Button href="/contact">Talk to us</Button>
               </div>

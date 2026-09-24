@@ -3,7 +3,6 @@ import Link from "next/link";
 import { PageHero } from "@/components/layout/PageHero";
 import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Section";
-import { CtaBand } from "@/components/sections/CtaBand";
 import { Reveal } from "@/components/visual/Reveal";
 import { content } from "@/lib/content";
 import { media } from "@/lib/media";
@@ -175,7 +174,7 @@ export default async function AboutPage() {
                 ["/engineering", "Engineering", "How we deliver"],
                 ["/security", "Security", "Security posture"],
                 ["/careers", "Careers", "Open roles"],
-                ["/contact", "Contact", "Ask a question or start a conversation"],
+                ["/contact", "Talk to us", "Ask a question or share an idea"],
               ].map(([href, label, hint]) => (
                 <li key={href}>
                   <Link
@@ -202,7 +201,6 @@ export default async function AboutPage() {
           </div>
         </Container>
       </Section>
-      <CtaBand />
     </>
   );
 }

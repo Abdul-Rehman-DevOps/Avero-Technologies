@@ -115,21 +115,22 @@ export default async function ServiceDetailPage({ params }: Props) {
           <div className="grid gap-10 lg:grid-cols-12">
             <Reveal className="lg:col-span-4">
               <div className="rounded-3xl border border-chalk-200 bg-chalk-50 p-6 md:sticky md:top-28">
-                <p className="tech-label text-signal">Commercial offering</p>
+                <p className="tech-label text-signal">How to engage</p>
                 <p className="mt-3 text-sm leading-relaxed text-ink-600">
-                  Distinct from organizational capabilities. This is how customers engage Avero on
-                  {capability ? ` ${capability.shortName}` : ""} work.
+                  This is how you work with Avero on
+                  {capability ? ` ${capability.shortName}` : ""} delivery — mapped to a clear
+                  commercial scope.
                 </p>
                 {capability ? (
                   <Link
                     href={`/capabilities/${capability.slug}`}
-                    className="mt-5 inline-flex rounded-full border border-chalk-200 bg-paper px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ink-700 no-underline hover:border-signal hover:text-signal"
+                    className="mt-5 inline-flex rounded-full border border-chalk-200 bg-paper px-3 py-1 text-xs font-semibold tracking-wide text-ink-700 no-underline hover:border-signal hover:text-signal"
                   >
                     {capability.name}
                   </Link>
                 ) : null}
                 <div className="mt-8">
-                  <Button href="/contact">Start a Conversation</Button>
+                  <Button href="/contact">Talk to us</Button>
                 </div>
                 <div className="mt-4">
                   <Button href="/services" variant="secondary" size="sm">
@@ -140,7 +141,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             </Reveal>
 
             <Reveal className="lg:col-span-8" variant="right">
-              <DetailTabs tabs={tabs} eyebrow="Service tabs" />
+              <DetailTabs tabs={tabs} eyebrow="About this service" />
 
               <div className="mt-10">
                 <p className="tech-label mb-3 text-signal">Engineering scope</p>
@@ -192,7 +193,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           ) : null}
         </Container>
       </Section>
-      <CtaBand title="Ready to scope this engagement?" />
+      <CtaBand title="Want to discuss this service?" />
     </>
   );
 }

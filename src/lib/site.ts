@@ -48,11 +48,10 @@ export const navPrimary: readonly NavItem[] = [
     href: "/about",
     children: [
       { label: "Company", href: "/about", description: "Who we are and how we work" },
-      { label: "Leadership", href: "/about/leadership", description: "Executive team" },
+      { label: "Leadership", href: "/about/leadership", description: "CEO and technology leadership" },
       { label: "People", href: "/about/people", description: "Public team profiles" },
-      { label: "Engineering", href: "/engineering", description: "Delivery method" },
-      { label: "Security", href: "/security", description: "Security posture" },
-      { label: "Trust", href: "/trust", description: "How we earn confidence" },
+      { label: "Engineering", href: "/engineering", description: "How we deliver" },
+      { label: "Security", href: "/security", description: "How we protect systems" },
     ],
   },
   {
@@ -179,8 +178,10 @@ export const navPrimary: readonly NavItem[] = [
 
 export const navSecondary = [
   { label: "Solutions", href: "/solutions" },
-  { label: "Technology", href: "/technology" },
   { label: "Capabilities", href: "/capabilities" },
+  { label: "Technology", href: "/technology" },
+  { label: "Engineering", href: "/engineering" },
+  { label: "Security", href: "/security" },
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },
 ] as const;
@@ -193,11 +194,7 @@ export const footerNav = [
   { label: "Case Studies", href: "/work" },
   { label: "Careers", href: "/careers" },
   { label: "Insights", href: "/insights" },
-  { label: "Contact", href: "/contact" },
-  { label: "Capabilities", href: "/capabilities" },
-  { label: "Technology", href: "/technology" },
-  { label: "Engineering", href: "/engineering" },
-  { label: "Security", href: "/security" },
+  { label: "Talk to us", href: "/contact" },
 ] as const;
 
 export const capabilityNodes = [
