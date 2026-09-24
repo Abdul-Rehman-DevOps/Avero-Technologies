@@ -22,6 +22,6 @@ export const config = {
     /*
      * Apply to all paths except Next internals and static assets.
      */
-    "/((?!_next/static|_next/image|favicon.ico|brand/|people/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|brand/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)",
   ],
 };

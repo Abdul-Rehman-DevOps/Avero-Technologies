@@ -12,20 +12,9 @@ import { usePathname } from "next/navigation";
 
 type RevealVariant = "up" | "left" | "right" | "scale" | "fade" | "rise" | "blur";
 
-function prefersReducedMotion(): boolean {
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
-
-function siteIsReady(): boolean {
-  return (
-    document.documentElement.classList.contains("avero-ready") ||
-    prefersReducedMotion()
-  );
-}
-
 /**
- * Scroll-triggered reveal for every section.
- * Arms hidden styles before paint, waits for boot, then observes reliably.
+ * Scroll fade that works on first load and after route changes.
+ * Does not wait for boot — arms immediately so the first visit animates.
  */
 export function Reveal({
   children,
@@ -43,15 +32,17 @@ export function Reveal({
   const [armed, setArmed] = useState(false);
   const [visible, setVisible] = useState(false);
 
-  // Reset when the route changes so client navigations animate again.
   useLayoutEffect(() => {
     setVisible(false);
-    if (prefersReducedMotion()) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setVisible(true);
       setArmed(false);
       return;
     }
-    setArmed(true);
+    // Arm after paint so opacity:0 is applied before we reveal (first visit + route changes).
+    setArmed(false);
+    const frame = window.requestAnimationFrame(() => setArmed(true));
+    return () => window.cancelAnimationFrame(frame);
   }, [pathname]);
 
   useEffect(() => {
@@ -61,14 +52,12 @@ export function Reveal({
 
     let cancelled = false;
     let delayTimer = 0;
-    let startTimer = 0;
     let fallbackTimer = 0;
     let revealed = false;
 
     const reveal = () => {
       if (cancelled || revealed) return;
       revealed = true;
-      window.clearTimeout(delayTimer);
       delayTimer = window.setTimeout(() => {
         if (!cancelled) setVisible(true);
       }, delay);
@@ -77,8 +66,7 @@ export function Reveal({
     const inView = () => {
       const rect = node.getBoundingClientRect();
       const vh = window.innerHeight || document.documentElement.clientHeight || 0;
-      // Generous: any overlap with the viewport counts.
-      return rect.bottom > 24 && rect.top < vh - 24;
+      return rect.bottom > 8 && rect.top < vh - 8;
     };
 
     const observer = new IntersectionObserver(
@@ -90,42 +78,24 @@ export function Reveal({
           });
         }
       },
-      { threshold: [0, 0.05, 0.1], rootMargin: "0px 0px -4% 0px" },
+      { threshold: 0.08, rootMargin: "0px 0px -5% 0px" },
     );
 
-    const startObserving = () => {
-      if (cancelled || revealed) return;
-      observer.observe(node);
-      if (inView()) {
-        observer.disconnect();
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => reveal());
-        });
-      }
-    };
-
-    const onBootDone = () => {
-      window.clearTimeout(startTimer);
-      startTimer = window.setTimeout(startObserving, 48);
-    };
-
-    if (siteIsReady()) {
-      startTimer = window.setTimeout(startObserving, 48);
-    } else {
-      window.addEventListener("avero:boot-done", onBootDone);
-      startTimer = window.setTimeout(startObserving, 2400);
+    observer.observe(node);
+    if (inView()) {
+      observer.disconnect();
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => reveal());
+      });
     }
 
-    // Never leave content stuck invisible.
-    fallbackTimer = window.setTimeout(() => reveal(), 4200);
+    fallbackTimer = window.setTimeout(() => reveal(), 1800);
 
     return () => {
       cancelled = true;
       window.clearTimeout(delayTimer);
-      window.clearTimeout(startTimer);
       window.clearTimeout(fallbackTimer);
       observer.disconnect();
-      window.removeEventListener("avero:boot-done", onBootDone);
     };
   }, [armed, delay, visible, pathname]);
 

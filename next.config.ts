@@ -35,6 +35,10 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   output: "standalone",
   images: {
+    formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256],
+    minimumCacheTTL: 60 * 60 * 24 * 30,
     remotePatterns: [
       {
         protocol: "https",
@@ -42,6 +46,12 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
+  },
+  async redirects() {
+    return [
+      { source: "/about/leadership", destination: "/about", permanent: true },
+      { source: "/about/people", destination: "/about", permanent: true },
+    ];
   },
   async headers() {
     return [

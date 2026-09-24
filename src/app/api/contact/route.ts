@@ -95,7 +95,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         ok: false,
-        error: "We could not deliver your message right now. Please email contact@avero.com or try again shortly.",
+        error: "We could not deliver your message right now. Please email contact@averotechnologies.com or try again shortly.",
       },
       { status: 502 },
     );

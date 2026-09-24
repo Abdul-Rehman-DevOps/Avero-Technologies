@@ -47,7 +47,7 @@ ok "contact schema friendly messages"
 
 echo "== HTTP routes (tabs) =="
 paths=(
-  / /about /about/leadership /about/people /services /solutions /industries /work /careers
+  / /about /services /solutions /industries /work /careers
   /insights /contact /capabilities /technology /engineering /security /trust /privacy /terms
   /cookies /portal/login /health /api/careers /api/insights /case-studies
   /services/software-engineering /services/generative-ai-systems /services/cloud-architecture

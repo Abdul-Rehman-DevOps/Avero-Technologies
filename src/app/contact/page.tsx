@@ -41,12 +41,18 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <dt className="text-xs font-semibold tracking-wide text-ink-400 uppercase">Phone</dt>
-                    <dd className="mt-1">
+                    <dd className="mt-1 space-y-1">
                       <a
                         href={`tel:${siteConfig.phoneTel}`}
-                        className="font-mono text-base font-semibold text-ink-950 no-underline hover:text-signal"
+                        className="block font-mono text-base font-semibold text-ink-950 no-underline hover:text-signal"
                       >
                         {siteConfig.phoneDisplay}
+                      </a>
+                      <a
+                        href={`tel:${siteConfig.phoneSecondaryTel}`}
+                        className="block font-mono text-base font-semibold text-ink-950 no-underline hover:text-signal"
+                      >
+                        {siteConfig.phoneSecondaryDisplay}
                       </a>
                     </dd>
                   </div>

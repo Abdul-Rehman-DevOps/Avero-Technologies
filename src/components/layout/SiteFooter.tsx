@@ -39,6 +39,12 @@ export function SiteFooter() {
                 {siteConfig.phoneDisplay}
               </a>
               <a
+                href={`tel:${siteConfig.phoneSecondaryTel}`}
+                className="block font-mono text-sm no-underline hover:text-[var(--signal)]"
+              >
+                {siteConfig.phoneSecondaryDisplay}
+              </a>
+              <a
                 href={`mailto:${siteConfig.email}`}
                 className="block text-sm text-[var(--footer-muted)] no-underline hover:text-[var(--signal)]"
               >

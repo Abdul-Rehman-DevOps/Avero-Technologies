@@ -58,7 +58,7 @@ export function organizationJsonLd() {
     alternateName: siteConfig.name,
     url: siteConfig.url,
     description: siteConfig.description,
-    telephone: siteConfig.phoneTel,
+    telephone: [siteConfig.phoneTel, siteConfig.phoneSecondaryTel],
     email: siteConfig.email,
   };
 }

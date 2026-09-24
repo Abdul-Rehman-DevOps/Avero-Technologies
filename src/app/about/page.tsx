@@ -4,7 +4,6 @@ import { PageHero } from "@/components/layout/PageHero";
 import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Section";
 import { Reveal } from "@/components/visual/Reveal";
-import { content } from "@/lib/content";
 import { media } from "@/lib/media";
 import { siteConfig } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
@@ -39,24 +38,10 @@ const facts = [
   { label: "Focus", value: "Production systems engineering" },
   { label: "Domains", value: "AI, software, cloud, platform, security, data" },
   { label: "Support", value: siteConfig.email },
-  { label: "Phone", value: siteConfig.phoneDisplay },
+  { label: "Phone", value: `${siteConfig.phoneDisplay} · ${siteConfig.phoneSecondaryDisplay}` },
 ];
 
-export default async function AboutPage() {
-  const [seats, people] = await Promise.all([
-    content.getLeadershipSeats(),
-    content.getPeople(),
-  ]);
-  const peopleBySlug = new Map(people.map((p) => [p.slug, p]));
-  const leaders = seats
-    .slice()
-    .sort((a, b) => a.sortOrder - b.sortOrder)
-    .map((seat) => ({
-      seat,
-      person: seat.personSlug ? peopleBySlug.get(seat.personSlug) ?? null : null,
-    }))
-    .filter((row) => row.person);
-
+export default function AboutPage() {
   return (
     <>
       <PageHero
@@ -101,56 +86,6 @@ export default async function AboutPage() {
             </Reveal>
           </div>
 
-          {leaders.length ? (
-            <Reveal className="mt-16">
-              <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
-                <div>
-                  <p className="tech-label text-signal">Leadership</p>
-                  <h2 className="font-display mt-2 text-2xl font-bold text-ink-950 md:text-3xl">
-                    CEO and CTO
-                  </h2>
-                </div>
-                <Link
-                  href="/about/leadership"
-                  className="text-sm font-semibold text-signal no-underline hover:underline"
-                >
-                  Full profiles →
-                </Link>
-              </div>
-              <div className="grid gap-5 sm:grid-cols-2">
-                {leaders.map(({ seat, person }, i) =>
-                  person ? (
-                    <Link
-                      key={seat.seatId}
-                      href="/about/leadership"
-                      className="group flex gap-4 rounded-3xl border border-chalk-200 bg-paper p-4 no-underline shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-signal/35 hover:shadow-lift"
-                    >
-                      <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl bg-chalk-100">
-                        {person.imagePublic ? (
-                          <Image
-                            src={person.imagePublic}
-                            alt=""
-                            fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
-                            sizes="96px"
-                            priority={i < 2}
-                          />
-                        ) : null}
-                      </div>
-                      <div className="min-w-0 self-center">
-                        <p className="tech-label text-signal">{person.roleTitle}</p>
-                        <p className="font-display mt-1 text-lg font-semibold text-ink-950">
-                          {person.displayName}
-                        </p>
-                        <p className="mt-1 text-sm text-ink-500">{seat.title}</p>
-                      </div>
-                    </Link>
-                  ) : null,
-                )}
-              </div>
-            </Reveal>
-          ) : null}
-
           <div className="mt-16 grid gap-4 md:grid-cols-2">
             {principles.map((p, i) => (
               <Reveal key={p.t} delay={i * 60}>
@@ -167,10 +102,9 @@ export default async function AboutPage() {
             <p className="tech-label mb-4">Explore</p>
             <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {[
-                ["/about/leadership", "Leadership", "CEO and CTO"],
-                ["/about/people", "People", "Public profiles"],
                 ["/engineering", "Engineering", "How we deliver"],
                 ["/security", "Security", "Security posture"],
+                ["/services", "Services", "What we build"],
                 ["/careers", "Careers", "Open roles"],
                 ["/contact", "Talk to us", "Ask a question or share an idea"],
               ].map(([href, label, hint]) => (

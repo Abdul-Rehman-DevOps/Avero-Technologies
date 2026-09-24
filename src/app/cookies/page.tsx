@@ -54,7 +54,8 @@ export default function CookiesPage() {
             <h2>3. Contact</h2>
             <p>
               Questions: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> ·{" "}
-              <a href={`tel:${siteConfig.phoneTel}`}>{siteConfig.phoneDisplay}</a>
+              <a href={`tel:${siteConfig.phoneTel}`}>{siteConfig.phoneDisplay}</a> ·{" "}
+              <a href={`tel:${siteConfig.phoneSecondaryTel}`}>{siteConfig.phoneSecondaryDisplay}</a>
             </p>
           </div>
         </Container>

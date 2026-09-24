@@ -22,7 +22,9 @@ export const siteConfig = {
   locale: "en_US",
   phoneDisplay: "+92 303 9692131",
   phoneTel: "+923039692131",
-  email: "contact@avero.com",
+  phoneSecondaryDisplay: "0313 8554552",
+  phoneSecondaryTel: "+923138554552",
+  email: "contact@averotechnologies.com",
 } as const;
 
 export type NavChild = {
@@ -48,8 +50,6 @@ export const navPrimary: readonly NavItem[] = [
     href: "/about",
     children: [
       { label: "Company", href: "/about", description: "Who we are and how we work" },
-      { label: "Leadership", href: "/about/leadership", description: "CEO and technology leadership" },
-      { label: "People", href: "/about/people", description: "Public team profiles" },
       { label: "Engineering", href: "/engineering", description: "How we deliver" },
       { label: "Security", href: "/security", description: "How we protect systems" },
     ],

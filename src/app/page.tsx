@@ -320,6 +320,7 @@ export default async function HomePage() {
               <ul className="mt-6 space-y-2 text-sm text-white/70">
                 <li>Public email: {siteConfig.email}</li>
                 <li>Phone: {siteConfig.phoneDisplay}</li>
+                <li>Phone: {siteConfig.phoneSecondaryDisplay}</li>
               </ul>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button href="/about">About us</Button>

@@ -6,8 +6,6 @@ import type {
   Credential,
   Industry,
   Job,
-  LeadershipSeat,
-  Person,
   Product,
   Service,
   Solution,
@@ -34,9 +32,6 @@ export interface ContentRepository {
   getCaseStudy(slug: string): Promise<CaseStudy | null>;
   getArticles(): Promise<Article[]>;
   getArticle(slug: string): Promise<Article | null>;
-  getPeople(): Promise<Person[]>;
-  getPerson(slug: string): Promise<Person | null>;
-  getLeadershipSeats(): Promise<LeadershipSeat[]>;
   getJobs(): Promise<Job[]>;
   getJob(slug: string): Promise<Job | null>;
   getProducts(): Promise<Product[]>;

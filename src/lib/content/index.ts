@@ -9,8 +9,6 @@ import type {
   Credential,
   Industry,
   Job,
-  LeadershipSeat,
-  Person,
   Product,
   Service,
   Solution,
@@ -181,20 +179,6 @@ export const filesystemContentRepository: ContentRepository = {
   async getArticle(slug) {
     const all = await this.getArticles();
     return all.find((a) => a.slug === slug) ?? null;
-  },
-
-  async getPeople() {
-    const data = await readJson<Person[]>("people/index.json");
-    return data.filter((p) => isPublic(p.visibility));
-  },
-
-  async getPerson(slug) {
-    const all = await this.getPeople();
-    return all.find((p) => p.slug === slug) ?? null;
-  },
-
-  async getLeadershipSeats() {
-    return readJson<LeadershipSeat[]>("people/leadership-seats.json");
   },
 
   async getJobs() {

@@ -141,36 +141,6 @@ export type Article = {
   seo: SeoFields;
 };
 
-export type Person = {
-  slug: string;
-  displayName: string;
-  roleTitle: string;
-  leadershipLevel:
-    | "founder"
-    | "c-level"
-    | "vp"
-    | "director"
-    | "head"
-    | "lead"
-    | "ic"
-    | "none";
-  team: CapabilityId | "corporate" | null;
-  expertise: string[];
-  locationId: string | null;
-  bioPublic: string | null;
-  imagePublic: string | null;
-  links: { linkedin: string | null };
-  visibility: Visibility;
-  showOnLeadership: boolean;
-};
-
-export type LeadershipSeat = {
-  seatId: string;
-  title: string;
-  personSlug: string | null;
-  sortOrder: number;
-};
-
 /** Future public credentials. Never render unless status is verified and visibility is public. */
 export type Credential = {
   id: string;

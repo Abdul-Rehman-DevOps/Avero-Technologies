@@ -124,7 +124,8 @@ export default function TermsPage() {
             <p>
               Questions about these Terms:{" "}
               <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> ·{" "}
-              <a href={`tel:${siteConfig.phoneTel}`}>{siteConfig.phoneDisplay}</a>
+              <a href={`tel:${siteConfig.phoneTel}`}>{siteConfig.phoneDisplay}</a> ·{" "}
+              <a href={`tel:${siteConfig.phoneSecondaryTel}`}>{siteConfig.phoneSecondaryDisplay}</a>
             </p>
           </div>
         </Container>

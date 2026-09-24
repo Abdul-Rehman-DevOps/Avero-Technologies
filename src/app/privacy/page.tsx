@@ -38,6 +38,9 @@ export default function PrivacyPage() {
               Email: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
               <br />
               Phone: <a href={`tel:${siteConfig.phoneTel}`}>{siteConfig.phoneDisplay}</a>
+              <br />
+              Phone:{" "}
+              <a href={`tel:${siteConfig.phoneSecondaryTel}`}>{siteConfig.phoneSecondaryDisplay}</a>
             </p>
 
             <h2>2. Data we collect</h2>
