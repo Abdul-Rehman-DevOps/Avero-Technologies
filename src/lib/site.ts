@@ -22,7 +22,7 @@ export const siteConfig = {
   locale: "en_US",
   phoneDisplay: "+92 303 9692131",
   phoneTel: "+923039692131",
-  phoneSecondaryDisplay: "0313 8554552",
+  phoneSecondaryDisplay: "+92 313 8554552",
   phoneSecondaryTel: "+923138554552",
   email: "contact@averotechnologies.com",
 } as const;

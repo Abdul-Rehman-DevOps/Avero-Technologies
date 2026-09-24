@@ -31,11 +31,11 @@
     rgb(7 17 31 / 0.55) 48%,
     rgb(13 143 156 / 0.28) 100%
   );
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-std: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --dur-fast: 140ms;
-  --dur-base: 240ms;
-  --dur-slow: 520ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-std: cubic-bezier(0.25, 0.8, 0.25, 1);
+  --dur-fast: 160ms;
+  --dur-base: 280ms;
+  --dur-slow: 640ms;
   --space-section: clamp(4.5rem, 9vw, 7.5rem);
   color-scheme: light;
 }
@@ -208,7 +208,7 @@
     @apply absolute left-0 top-full z-[60] mt-3 w-[min(94vw,820px)] border border-chalk-200 bg-paper p-5;
     border-radius: 18px;
     box-shadow: 0 24px 60px rgb(7 17 31 / 0.14);
-    animation: fade-up 0.22s var(--ease-out);
+    animation: fade-up 0.28s var(--ease-out);
   }
 
   /* Keep last nav mega menus on-screen */
@@ -398,7 +398,7 @@
   }
 
   .detail-tab-panel {
-    animation: fade-up 0.35s var(--ease-out) both;
+    animation: fade-up 0.45s var(--ease-out) both;
   }
 
   .marquee {
@@ -415,27 +415,27 @@
 
   .avero-js .stagger-in > * {
     opacity: 0;
-    transform: translateY(14px);
-    animation: fade-up 0.55s var(--ease-out) both;
+    transform: translateY(18px);
+    animation: fade-up 0.7s var(--ease-out) both;
   }
 
   .avero-js .stagger-in > *:nth-child(1) {
-    animation-delay: 0.04s;
+    animation-delay: 0.06s;
   }
   .avero-js .stagger-in > *:nth-child(2) {
-    animation-delay: 0.1s;
+    animation-delay: 0.14s;
   }
   .avero-js .stagger-in > *:nth-child(3) {
-    animation-delay: 0.16s;
-  }
-  .avero-js .stagger-in > *:nth-child(4) {
     animation-delay: 0.22s;
   }
+  .avero-js .stagger-in > *:nth-child(4) {
+    animation-delay: 0.3s;
+  }
   .avero-js .stagger-in > *:nth-child(5) {
-    animation-delay: 0.28s;
+    animation-delay: 0.38s;
   }
   .avero-js .stagger-in > *:nth-child(6) {
-    animation-delay: 0.34s;
+    animation-delay: 0.46s;
   }
 
   /* Static hero crop — no continuous orbit (was causing stick/flicker on low CPU). */
@@ -454,23 +454,23 @@
   /* Hidden until .reveal--in — only when JS motion flag is present (before paint). */
   .avero-js .reveal:not(.reveal--in) {
     opacity: 0;
-    transform: translate3d(0, 22px, 0);
-  }
-
-  .avero-js .reveal--rise:not(.reveal--in) {
     transform: translate3d(0, 28px, 0);
   }
 
+  .avero-js .reveal--rise:not(.reveal--in) {
+    transform: translate3d(0, 36px, 0);
+  }
+
   .avero-js .reveal--left:not(.reveal--in) {
-    transform: translate3d(-24px, 10px, 0);
+    transform: translate3d(-32px, 12px, 0);
   }
 
   .avero-js .reveal--right:not(.reveal--in) {
-    transform: translate3d(24px, 10px, 0);
+    transform: translate3d(32px, 12px, 0);
   }
 
   .avero-js .reveal--scale:not(.reveal--in) {
-    transform: scale(0.97) translate3d(0, 14px, 0);
+    transform: scale(0.96) translate3d(0, 18px, 0);
   }
 
   .avero-js .reveal--fade:not(.reveal--in),
@@ -480,8 +480,8 @@
 
   .avero-js .reveal {
     transition:
-      opacity 0.55s var(--ease-out),
-      transform 0.55s var(--ease-out);
+      opacity 0.75s var(--ease-out),
+      transform 0.75s var(--ease-out);
   }
 
   .avero-js .reveal.reveal--in {
@@ -520,7 +520,7 @@
 
 
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(14px); }
+  from { opacity: 0; transform: translateY(18px); }
   to { opacity: 1; transform: translateY(0); }
 }
 

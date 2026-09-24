@@ -6,8 +6,7 @@ import { usePathname } from "next/navigation";
 type RevealVariant = "up" | "left" | "right" | "scale" | "fade" | "rise" | "blur";
 
 /**
- * Lightweight scroll fade for low-CPU clients.
- * Starts hidden under .avero-js (set before paint), then fades once in view.
+ * Smooth scroll fade: starts early as content approaches the viewport.
  */
 export function Reveal({
   children,
@@ -46,14 +45,19 @@ export function Reveal({
           if (!cancelled) setShown(true);
         }, delay);
       } else {
-        setShown(true);
+        // Double-rAF so the pending styles paint before the transition starts.
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            if (!cancelled) setShown(true);
+          });
+        });
       }
     };
 
     const nearViewport = () => {
       const rect = node.getBoundingClientRect();
       const vh = window.innerHeight || 0;
-      return rect.top < vh * 0.94 && rect.bottom > 0;
+      return rect.top < vh * 0.98 && rect.bottom > -40;
     };
 
     const observer = new IntersectionObserver(
@@ -63,17 +67,17 @@ export function Reveal({
           show();
         }
       },
-      { threshold: 0.1, rootMargin: "40px 0px -6% 0px" },
+      // Start the fade while content is still approaching — feels smoother.
+      { threshold: 0.05, rootMargin: "0px 0px -8% 0px" },
     );
     observer.observe(node);
 
-    // Above-the-fold: one frame so pending styles apply, then fade in.
     if (nearViewport()) {
       observer.disconnect();
-      requestAnimationFrame(() => show());
+      show();
     }
 
-    const fallback = window.setTimeout(show, 1400);
+    const fallback = window.setTimeout(show, 1600);
 
     return () => {
       cancelled = true;

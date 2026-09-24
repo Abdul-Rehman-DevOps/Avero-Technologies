@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Section";
 import { NewsletterForm } from "@/components/forms/NewsletterForm";
 import { Reveal } from "@/components/visual/Reveal";
-import { ScrollProgress } from "@/components/system/ScrollProgress";
 import { content } from "@/lib/content";
 import { media } from "@/lib/media";
 import { buildMetadata } from "@/lib/seo";
@@ -74,7 +73,6 @@ export default async function HomePage() {
 
   return (
     <>
-      <ScrollProgress />
       <section id="hero" className="hero-plane border-b border-chalk-200">
         <div className="hero-plane__media">
           <Image
