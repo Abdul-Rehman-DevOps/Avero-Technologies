@@ -1,7 +1,7 @@
 ---
 slug: "secure-defaults-in-delivery"
 title: "Secure defaults belong in the delivery path"
-summary: "Why security reviews fail when controls live outside the paved road — and how to encode them into CI and templates."
+summary: "Why security reviews fail when controls live outside the paved road, and how to encode them into CI and templates."
 category: "Security"
 tags: ["devsecops", "platform", "delivery"]
 authors: ["Avero Security Engineering"]
@@ -17,7 +17,7 @@ Security that depends on heroics does not scale. The highest-leverage move is ma
 
 ## Put controls where work already happens
 
-Static analysis, dependency scanning, secret detection, and policy checks belong in pull requests and pipelines — not in a late-stage checklist nobody reads.
+Static analysis, dependency scanning, secret detection, and policy checks belong in pull requests and pipelines, not in a late-stage checklist nobody reads.
 
 ## Templates beat tickets
 

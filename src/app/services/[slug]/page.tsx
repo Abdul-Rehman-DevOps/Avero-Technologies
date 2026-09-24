@@ -92,7 +92,7 @@ export default async function ServiceDetailPage({ params }: Props) {
     {
       id: "technology",
       label: "Technology",
-      body: `${relatedTech.join(", ")}. Representative stack — not a partnership claim.`,
+      body: `${relatedTech.join(", ")}. Representative stack, not a partnership claim.`,
       mediaKey: tabMediaForSection("tech", service.capability),
     },
   ];
@@ -118,7 +118,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                 <p className="tech-label text-signal">How to engage</p>
                 <p className="mt-3 text-sm leading-relaxed text-ink-600">
                   This is how you work with Avero on
-                  {capability ? ` ${capability.shortName}` : ""} delivery — mapped to a clear
+                  {capability ? ` ${capability.shortName}` : ""} delivery, mapped to a clear
                   commercial scope.
                 </p>
                 {capability ? (

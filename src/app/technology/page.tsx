@@ -37,7 +37,7 @@ export default async function TechnologyPage() {
         mediaKey="cloud"
         label="Technology"
         title="Technology"
-        description="Tools and platforms we use in delivery — grouped by domain, not a logo wall."
+        description="Tools and platforms we use in delivery, grouped by domain, not a logo wall."
         crumbs={[{ label: "Home", href: "/" }, { label: "Technology" }]}
       />
       <Section>

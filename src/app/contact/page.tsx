@@ -55,7 +55,7 @@ export default function ContactPage() {
               <div className="rounded-3xl border border-chalk-200 bg-chalk-50 p-6">
                 <p className="tech-label">Good to know</p>
                 <ul className="mt-4 space-y-3 text-sm text-ink-600">
-                  <li>General questions are welcome — not only project briefs.</li>
+                  <li>General questions are welcome, not only project briefs.</li>
                   <li>Use a work email when possible.</li>
                   <li>Do not include secrets or credentials.</li>
                 </ul>
@@ -65,7 +65,7 @@ export default function ContactPage() {
               <div className="rounded-3xl border border-chalk-200 bg-paper p-5 shadow-soft md:p-8">
                 <h2 className="font-display text-2xl font-bold text-ink-950">Send us a message</h2>
                 <p className="mt-2 mb-6 text-sm text-ink-600">
-                  Choose general inquiry or project discussion — whichever fits.
+                  Choose general inquiry or project discussion, whichever fits.
                 </p>
                 <ContactForm />
               </div>

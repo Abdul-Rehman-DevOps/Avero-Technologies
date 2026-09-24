@@ -58,15 +58,15 @@ export default function PrivacyPage() {
             <h2>3. Purposes and legal bases</h2>
             <ul>
               <li>
-                <strong>Respond to inquiries and evaluate potential engagements</strong> — legitimate
+                <strong>Respond to inquiries and evaluate potential engagements</strong>, legitimate
                 interests / steps prior to contract, as applicable.
               </li>
               <li>
-                <strong>Secure and operate the website</strong> — legitimate interests in integrity and
+                <strong>Secure and operate the website</strong>, legitimate interests in integrity and
                 availability; legal obligations where applicable.
               </li>
               <li>
-                <strong>Improve site reliability</strong> — limited technical diagnostics; we do not
+                <strong>Improve site reliability</strong>, limited technical diagnostics; we do not
                 currently run third-party advertising trackers on this site.
               </li>
             </ul>

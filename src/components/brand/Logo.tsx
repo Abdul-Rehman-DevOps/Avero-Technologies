@@ -8,7 +8,7 @@ type LogoProps = {
 };
 
 /**
- * Avero Signal Apex mark — clear geometric A with teal signal beam.
+ * Avero Signal Apex mark, clear geometric A with teal signal beam.
  */
 export function AveroMark({ className = "h-10 w-10" }: { className?: string }) {
   return (

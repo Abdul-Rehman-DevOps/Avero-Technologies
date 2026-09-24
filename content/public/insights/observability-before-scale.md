@@ -1,7 +1,7 @@
 ---
 slug: "observability-before-scale"
 title: "Observability before you scale"
-summary: "Why telemetry, SLOs, and incident readiness belong in the first architecture review — not after the first outage."
+summary: "Why telemetry, SLOs, and incident readiness belong in the first architecture review, not after the first outage."
 category: "Reliability"
 tags: ["observability", "sre", "operations"]
 authors: ["Avero Platform Engineering"]
@@ -21,7 +21,7 @@ What does healthy look like? Who gets paged? What evidence do you need in the fi
 
 ## Instrument the path
 
-Traces, metrics, and structured logs should travel with the service template — not arrive as a cleanup project.
+Traces, metrics, and structured logs should travel with the service template, not arrive as a cleanup project.
 
 ## Publish SLOs
 

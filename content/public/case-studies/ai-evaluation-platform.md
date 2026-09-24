@@ -15,7 +15,7 @@ engineeringChallenge: "Balancing developer speed with mandatory evaluation gates
 securityConsiderations: "Secret handling for model providers, PII redaction in traces, and access control on evaluation datasets."
 implementation: "Platform team delivered SDKs and CI templates; security co-owned the promotion checklist."
 results: "Cut promotion incidents related to prompt regressions and established a measurable quality baseline per assistant."
-lessonsLearned: "Evaluation must be a paved road — optional tooling is ignored under deadline pressure."
+lessonsLearned: "Evaluation must be a paved road, optional tooling is ignored under deadline pressure."
 clientDisplayName: null
 capabilities: ["ai", "platform", "security"]
 visibility: "public"

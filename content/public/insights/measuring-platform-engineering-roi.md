@@ -1,7 +1,7 @@
 ---
 slug: "measuring-platform-engineering-roi"
 title: "Measuring platform engineering ROI without vanity metrics"
-summary: "A practical scorecard for platform teams: lead time, change failure rate, and adoption — not ticket volume."
+summary: "A practical scorecard for platform teams: lead time, change failure rate, and adoption, not ticket volume."
 category: "Platform"
 tags: ["platform-engineering", "metrics", "delivery"]
 authors: ["Avero Platform Engineering"]
@@ -13,7 +13,7 @@ seo:
   description: "How Avero thinks about platform value: lead time, reliability, and paved-road adoption."
 ---
 
-Platform teams exist to reduce cognitive load and improve delivery safety. Measure those outcomes — not how busy the platform team looks.
+Platform teams exist to reduce cognitive load and improve delivery safety. Measure those outcomes, not how busy the platform team looks.
 
 ## Useful signals
 

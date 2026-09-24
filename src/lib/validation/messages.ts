@@ -1,6 +1,6 @@
 import type { ZodError } from "zod";
 
-/** First friendly message per field — never expose raw Zod dumps to the UI. */
+/** First friendly message per field, never expose raw Zod dumps to the UI. */
 export function fieldErrorsFromZod(error: ZodError): Record<string, string[]> {
   const flat = error.flatten().fieldErrors as Record<string, string[] | undefined>;
   const out: Record<string, string[]> = {};

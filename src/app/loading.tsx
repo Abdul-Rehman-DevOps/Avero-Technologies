@@ -1,5 +1,5 @@
 /**
- * Route-level loading UI — Signal Apex spinner (no full-screen takeover).
+ * Route-level loading UI, Signal Apex spinner (no full-screen takeover).
  */
 export default function Loading() {
   return (

@@ -107,7 +107,7 @@ export default async function AboutPage() {
                 <div>
                   <p className="tech-label text-signal">Leadership</p>
                   <h2 className="font-display mt-2 text-2xl font-bold text-ink-950 md:text-3xl">
-                    CEO and technology leadership
+                    CEO and CTO
                   </h2>
                 </div>
                 <Link
@@ -138,13 +138,11 @@ export default async function AboutPage() {
                         ) : null}
                       </div>
                       <div className="min-w-0 self-center">
-                        <p className="tech-label text-signal">{seat.title}</p>
+                        <p className="tech-label text-signal">{person.roleTitle}</p>
                         <p className="font-display mt-1 text-lg font-semibold text-ink-950">
-                          {person.roleTitle === "CEO" ? person.roleTitle : person.displayName}
+                          {person.displayName}
                         </p>
-                        <p className="mt-1 text-sm text-ink-500">
-                          {person.roleTitle === "CEO" ? person.displayName : person.roleTitle}
-                        </p>
+                        <p className="mt-1 text-sm text-ink-500">{seat.title}</p>
                       </div>
                     </Link>
                   ) : null,
@@ -169,7 +167,7 @@ export default async function AboutPage() {
             <p className="tech-label mb-4">Explore</p>
             <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {[
-                ["/about/leadership", "Leadership", "CEO and technology leadership"],
+                ["/about/leadership", "Leadership", "CEO and CTO"],
                 ["/about/people", "People", "Public profiles"],
                 ["/engineering", "Engineering", "How we deliver"],
                 ["/security", "Security", "Security posture"],

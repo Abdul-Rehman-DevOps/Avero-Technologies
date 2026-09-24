@@ -34,11 +34,7 @@ export default function CookiesPage() {
             <h3>Essential / functional</h3>
             <ul>
               <li>
-                <strong>Session cookie (`avero_portal_session`)</strong> — used only after you sign
-                in to the Employee Portal. HttpOnly, not used for advertising.
-              </li>
-              <li>
-                <strong>Security and delivery</strong> — standard HTTP connection and hosting
+                <strong>Security and delivery.</strong> Standard HTTP connection and hosting
                 behaviors required to serve pages securely. These are not advertising cookies.
               </li>
             </ul>
@@ -51,9 +47,8 @@ export default function CookiesPage() {
 
             <h2>2. Managing preferences</h2>
             <p>
-              You can clear localStorage and cookies through your browser settings. Clearing storage
-              resets theme preference to system default. Blocking all storage may affect theme
-              persistence but not core page access.
+              You can clear localStorage and cookies through your browser settings. Blocking all
+              storage may affect optional preferences but not core page access.
             </p>
 
             <h2>3. Contact</h2>

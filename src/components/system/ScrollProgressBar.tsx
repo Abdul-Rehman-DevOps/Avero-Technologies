@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-/** Top reading progress — glowing signal trail. */
+/** Top reading progress, glowing signal trail. */
 export function ScrollProgressBar() {
   const [progress, setProgress] = useState(0);
 

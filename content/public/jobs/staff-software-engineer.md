@@ -4,7 +4,7 @@ title: "Staff Software Engineer"
 department: "Engineering"
 team: "engineering"
 locationType: "remote"
-locations: ["Remote — worldwide"]
+locations: ["Remote, worldwide"]
 employmentType: "full-time"
 seniority: "staff"
 description: "Lead design and delivery of production software systems across Avero client and internal platforms."

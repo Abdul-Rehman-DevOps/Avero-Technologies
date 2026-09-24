@@ -101,7 +101,7 @@ export default function SecurityPage() {
             <Reveal className="lg:col-span-4" variant="left">
               <p className="tech-label text-signal">Practice</p>
               <h2 className="font-display mt-3 text-2xl md:text-3xl">
-                Security is built into delivery — not bolted on later.
+                Security is built into delivery, not bolted on later.
               </h2>
               <p className="mt-4 text-ink-600">
                 This page describes practices we apply in delivery. It is not a compliance claim and

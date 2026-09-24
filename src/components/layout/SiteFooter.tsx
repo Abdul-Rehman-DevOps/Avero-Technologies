@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Logo } from "@/components/brand/Logo";
 import { NewsletterForm } from "@/components/forms/NewsletterForm";
 import { Container } from "@/components/ui/Section";
@@ -10,9 +9,7 @@ import { footerNav, navSecondary, siteConfig } from "@/lib/site";
 import { media } from "@/lib/media";
 
 export function SiteFooter() {
-  const pathname = usePathname();
   const year = new Date().getFullYear();
-  if (pathname?.startsWith("/portal")) return null;
 
   return (
     <footer className="site-footer">

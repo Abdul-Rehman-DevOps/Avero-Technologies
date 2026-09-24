@@ -9,7 +9,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Leadership",
-  description: "Leadership at Avero Technologies — CEO and Chief Technology Lead.",
+  description: "Leadership at Avero Technologies: CEO and Chief Technology Officer.",
   path: "/about/leadership",
 });
 
@@ -65,23 +65,17 @@ export default async function LeadershipPage() {
                         />
                       ) : null}
                       <div className="absolute inset-x-0 bottom-0 bg-[linear-gradient(180deg,transparent,rgb(7_17_31/0.88))] p-6 pt-24">
-                        <p className="tech-label text-signal">{seat.title}</p>
+                        <p className="tech-label text-signal">{person.roleTitle}</p>
                         <h2 className="font-display mt-2 text-2xl font-bold text-white md:text-3xl">
-                          {person.displayName === seat.title || person.roleTitle === "CEO"
-                            ? person.roleTitle
-                            : person.displayName}
+                          {person.displayName}
                         </h2>
-                        {person.roleTitle === "CEO" ? (
-                          <p className="mt-1 text-sm text-white/70">{person.displayName}</p>
-                        ) : (
-                          <p className="mt-1 text-sm text-white/70">{person.roleTitle}</p>
-                        )}
+                        <p className="mt-1 text-sm text-white/70">{seat.title}</p>
                       </div>
                     </div>
                     <div className="p-6">
                       {person.expertise.length ? (
                         <p className="text-xs tracking-wide text-ink-400 uppercase">
-                          {person.expertise.slice(0, 4).join(" · ")}
+                          {person.expertise.join(" · ")}
                         </p>
                       ) : null}
                       {person.bioPublic ? (

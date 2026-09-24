@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { newsletterSchema } from "@/lib/auth/schema";
+import { newsletterSchema } from "@/lib/newsletter/schema";
 import { rateLimit } from "@/lib/contact/rate-limit";
 import { fieldErrorsFromZod, firstIssueMessage } from "@/lib/validation/messages";
 
@@ -57,7 +57,7 @@ export async function POST(request: Request) {
   return NextResponse.json({
     ok: true,
     message: already
-      ? "You are already on the list — thank you."
-      : "Thanks — you are subscribed.",
+      ? "You are already on the list. Thank you."
+      : "Thanks. You are subscribed.",
   });
 }

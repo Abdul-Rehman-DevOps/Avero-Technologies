@@ -13,7 +13,7 @@ type CtaBandProps = {
 
 export function CtaBand({
   title = "Ready to talk?",
-  description = "Send a message — general questions and project ideas are both welcome. We reply with a clear next step.",
+  description = "Send a message. General questions and project ideas are both welcome. We reply with a clear next step.",
   primaryHref = "/contact",
   primaryLabel = "Talk to us",
 }: CtaBandProps) {

@@ -8,17 +8,9 @@ type Props = {
 };
 
 export function PersonProfile({ person, titles, className = "" }: Props) {
-  const roleLines = titles?.length ? titles : [person.roleTitle];
-  const isRoleAsName =
-    person.roleTitle === "CEO" ||
-    person.displayName === person.roleTitle ||
-    person.displayName.toLowerCase().includes("chief");
-
-  const heading = isRoleAsName && person.roleTitle === "CEO" ? person.roleTitle : person.displayName;
-  const subLines =
-    isRoleAsName && person.roleTitle === "CEO"
-      ? [person.displayName, ...roleLines.filter((t) => t !== person.displayName && t !== "CEO")]
-      : roleLines;
+  const extraTitles = (titles ?? []).filter(
+    (title) => title !== person.roleTitle && title !== person.displayName,
+  );
 
   return (
     <article
@@ -54,14 +46,17 @@ export function PersonProfile({ person, titles, className = "" }: Props) {
       </div>
 
       <div className="min-w-0">
-        <h2 className="font-display text-xl text-ink-950 md:text-2xl">{heading}</h2>
-        <ul className="mt-2 space-y-1">
-          {subLines.map((title) => (
-            <li key={title} className="text-sm text-ink-700">
-              {title}
-            </li>
-          ))}
-        </ul>
+        <p className="tech-label text-signal">{person.roleTitle}</p>
+        <h2 className="font-display mt-2 text-xl text-ink-950 md:text-2xl">{person.displayName}</h2>
+        {extraTitles.length ? (
+          <ul className="mt-2 space-y-1">
+            {extraTitles.map((title) => (
+              <li key={title} className="text-sm text-ink-700">
+                {title}
+              </li>
+            ))}
+          </ul>
+        ) : null}
         {person.expertise.length ? (
           <p className="tech-label mt-3 text-ink-400">{person.expertise.join(" · ")}</p>
         ) : null}

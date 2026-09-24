@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 export const size = { width: 64, height: 64 };
 export const contentType = "image/png";
 
-/** Favicon — Avero Signal Apex. */
+/** Favicon, Avero Signal Apex. */
 export default function Icon() {
   return new ImageResponse(
     (

@@ -10,7 +10,7 @@ updatedAt: "2026-09-20"
 visibility: "public"
 seo:
   title: "Cloud cost is an architecture problem"
-  description: "Treat cloud spend as a design constraint — environments, data movement, and identity boundaries."
+  description: "Treat cloud spend as a design constraint, environments, data movement, and identity boundaries."
 ---
 
 Cost surprises rarely come from a single expensive instance. They come from architecture that never had a cost model.

@@ -17,4 +17,4 @@ Modern technology problems rarely live in a single layer. An AI feature implies 
 
 Avero approaches engagements as systems work: clarify the problem, design the architecture, implement with verification, operate with telemetry, and evolve deliberately.
 
-That means AI, software, cloud, platform, security, and data are planned together — so production systems stay operable after launch, not only impressive in a demo.
+That means AI, software, cloud, platform, security, and data are planned together, so production systems stay operable after launch, not only impressive in a demo.

@@ -4,7 +4,7 @@ title: "Senior Platform Engineer"
 department: "Engineering"
 team: "platform"
 locationType: "remote"
-locations: ["Remote — worldwide"]
+locations: ["Remote, worldwide"]
 employmentType: "full-time"
 seniority: "senior"
 description: "Design and operate internal developer platforms that make secure delivery the default path for Avero product and client teams."

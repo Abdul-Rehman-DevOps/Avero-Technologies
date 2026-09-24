@@ -1,19 +1,19 @@
 /**
  * Curated royalty-free imagery (Unsplash) for Avero marketing surfaces.
- * Style refs: enterprise tech photography — not copied from any brand assets.
+ * Style refs: enterprise tech photography, not copied from any brand assets.
  */
 export const media = {
   hero: {
     src: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2400&q=80",
-    alt: "Earth from orbit with city lights — global systems at scale",
+    alt: "Earth from orbit with city lights, global systems at scale",
   },
   engineering: {
     src: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80",
-    alt: "Circuit board close-up — precision engineering",
+    alt: "Circuit board close-up, precision engineering",
   },
   cloud: {
     src: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1600&q=80",
-    alt: "Data center corridor — cloud infrastructure",
+    alt: "Data center corridor, cloud infrastructure",
   },
   team: {
     src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80",
@@ -29,7 +29,7 @@ export const media = {
   },
   security: {
     src: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1600&q=80",
-    alt: "Code on a dark screen — application security work",
+    alt: "Code on a dark screen, application security work",
   },
   data: {
     src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80",

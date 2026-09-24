@@ -25,8 +25,8 @@ const projectTypes = [
 
 const timelines = [
   { value: "asap", label: "As soon as possible" },
-  { value: "1-3m", label: "1–3 months" },
-  { value: "3-6m", label: "3–6 months" },
+  { value: "1-3m", label: "1-3 months" },
+  { value: "3-6m", label: "3-6 months" },
   { value: "exploratory", label: "Exploratory / discovery" },
   { value: "n-a", label: "Not applicable" },
 ] as const;
@@ -110,7 +110,7 @@ export function ContactForm() {
         className="rounded-3xl border border-signal/30 bg-signal-subtle p-6 md:p-8"
       >
         <p className="tech-label text-signal">Message received</p>
-        <h2 className="font-display mt-3 text-2xl text-ink-950">Thank you — we got your note.</h2>
+        <h2 className="font-display mt-3 text-2xl text-ink-950">Thank you. We got your note.</h2>
         <p className="mt-3 max-w-lg text-sm text-ink-700">
           Our team will reply to your email with a clear next step.
         </p>
@@ -155,7 +155,7 @@ export function ContactForm() {
         <FieldError id="intent-error" errors={fieldErrors.intent} />
         {intent === "general" ? (
           <p className="mt-1.5 text-xs leading-relaxed text-ink-400">
-            A general question — no project brief required.
+            A general question. No project brief required.
           </p>
         ) : null}
       </div>
@@ -193,7 +193,7 @@ export function ContactForm() {
         name="lookingToBuild"
         required
         errors={fieldErrors.lookingToBuild}
-        hint="A short line is enough — question, idea, or context."
+        hint="A short line is enough: a question, idea, or context."
       />
 
       {showProjectDetails ? (
@@ -271,7 +271,7 @@ export function ContactForm() {
           aria-invalid={Boolean(fieldErrors.message)}
           placeholder={
             intent === "general"
-              ? "Ask your question — we will reply with a clear next step."
+              ? "Ask your question. We will reply with a clear next step."
               : "Share context, goals, or what success looks like."
           }
         />

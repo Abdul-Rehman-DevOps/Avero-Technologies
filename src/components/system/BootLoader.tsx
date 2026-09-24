@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 /**
- * Avero Signal Boot — first-visit full-screen loader.
+ * Avero Signal Boot, first-visit full-screen loader.
  * Geometric mark + scanning signal beam. Session-once.
  */
 export function BootLoader() {

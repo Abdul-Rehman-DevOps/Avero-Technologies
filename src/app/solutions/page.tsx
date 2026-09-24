@@ -22,7 +22,7 @@ export default async function SolutionsPage() {
         mediaKey="delivery"
         label="Solutions"
         title="Solutions we deliver"
-        description="Packaged outcomes that combine our services — described by problem and result."
+        description="Packaged outcomes that combine our services, described by problem and result."
         crumbs={[{ label: "Home", href: "/" }, { label: "Solutions" }]}
       />
       <Section>

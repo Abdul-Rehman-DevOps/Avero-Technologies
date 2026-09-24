@@ -17,7 +17,7 @@ export default function Error({
           We hit an unexpected problem.
         </h1>
         <p className="mt-4 max-w-lg text-ink-600">
-          Please try again. If it continues, return home or contact us — technical details are kept
+          Please try again. If it continues, return home or contact us. Technical details are kept
           internal.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">

@@ -1,4 +1,4 @@
 [
   { "seatId": "ceo", "title": "Chief Executive Officer", "personSlug": "ceo", "sortOrder": 1 },
-  { "seatId": "ctl", "title": "Chief Technology Lead", "personSlug": "abdul-rehman", "sortOrder": 2 }
+  { "seatId": "cto", "title": "Chief Technology Officer", "personSlug": "abdul-rehman", "sortOrder": 2 }
 ]

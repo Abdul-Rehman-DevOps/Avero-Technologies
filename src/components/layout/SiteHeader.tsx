@@ -25,7 +25,6 @@ export function SiteHeader() {
   const [activePanel, setActivePanel] = useState<string | null>(null);
   const panelId = useId();
   const headerRef = useRef<HTMLElement>(null);
-  const isPortal = pathname?.startsWith("/portal");
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -65,8 +64,6 @@ export function SiteHeader() {
       window.removeEventListener("mousedown", onPointer);
     };
   }, []);
-
-  if (isPortal) return null;
 
   return (
     <header

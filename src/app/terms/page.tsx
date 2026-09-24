@@ -39,8 +39,8 @@ export default function TermsPage() {
 
             <h2>2. Informational content</h2>
             <p>
-              Content on this site—including capability descriptions, services, solutions, technology
-              lists, insights, and organizational information—is provided for general information. It
+              Content on this site, including capability descriptions, services, solutions, technology
+              lists, insights, and organizational information, is provided for general information. It
               is not legal, security, financial, or professional advice. Technology names and
               platforms mentioned indicate familiarity in delivery work and are not partnership or
               endorsement claims unless we explicitly state otherwise in a signed agreement.

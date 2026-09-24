@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { newsletterSchema } from "@/lib/auth/schema";
+import { newsletterSchema } from "@/lib/newsletter/schema";
 import { firstIssueMessage } from "@/lib/validation/messages";
 
 type Props = {
@@ -38,7 +38,7 @@ export function NewsletterForm({ variant = "inline" }: Props) {
         return;
       }
       setStatus("ok");
-      setMessage(data.message ?? "Thanks — you are subscribed.");
+      setMessage(data.message ?? "Thanks. You are subscribed.");
       setEmail("");
     } catch {
       setStatus("error");
