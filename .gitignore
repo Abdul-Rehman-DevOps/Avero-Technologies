@@ -42,3 +42,7 @@ next-env.d.ts
 # IDE
 .idea
 .vscode
+
+# local captures
+Recording*.mp4
+.tmp-frames/

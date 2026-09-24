@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
-/** Route change signal: sweeping teal bar + soft veil. Skips the first mount. */
+/** Soft route change cue — short bar only, no full-screen flash. */
 export function PageTransition() {
   const pathname = usePathname();
   const [active, setActive] = useState(false);
@@ -15,13 +15,12 @@ export function PageTransition() {
       return;
     }
 
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setActive(false);
       return;
     }
     setActive(true);
-    const t = window.setTimeout(() => setActive(false), 620);
+    const t = window.setTimeout(() => setActive(false), 380);
     return () => {
       window.clearTimeout(t);
       setActive(false);
@@ -33,7 +32,6 @@ export function PageTransition() {
   return (
     <div className="page-signal" aria-hidden="true">
       <div className="page-signal__bar" />
-      <div className="page-signal__flash" />
     </div>
   );
 }

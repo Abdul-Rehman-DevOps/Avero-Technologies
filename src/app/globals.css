@@ -100,10 +100,13 @@
   }
 
   .site-header {
-    background: var(--header-bg);
-    backdrop-filter: blur(16px) saturate(1.2);
-    -webkit-backdrop-filter: blur(16px) saturate(1.2);
+    background: rgb(255 255 255 / 0.97);
     box-shadow: 0 1px 0 rgb(7 17 31 / 0.04);
+  }
+
+  .site-header--scrolled {
+    border-color: var(--chalk-200) !important;
+    box-shadow: 0 8px 28px rgb(7 17 31 / 0.06);
   }
 
   .site-footer {
@@ -116,14 +119,12 @@
     isolation: isolate;
     overflow: hidden;
     min-height: min(92vh, 880px);
-    perspective: 1400px;
   }
 
   .hero-plane__media {
     position: absolute;
-    inset: -6%;
+    inset: 0;
     z-index: 0;
-    transform-style: preserve-3d;
   }
 
   .hero-plane__veil {
@@ -146,8 +147,7 @@
     height: 70%;
     z-index: 1;
     pointer-events: none;
-    background: radial-gradient(circle, rgb(13 143 156 / 0.35), transparent 65%);
-    animation: pulse-glow 6s ease-in-out infinite;
+    background: radial-gradient(circle, rgb(13 143 156 / 0.28), transparent 65%);
   }
 
   .surface-card {
@@ -155,14 +155,12 @@
     border-radius: 16px;
     box-shadow: 0 8px 28px rgb(7 17 31 / 0.05);
     transition:
-      transform var(--dur-base) var(--ease-out),
       box-shadow var(--dur-base) var(--ease-out),
       border-color var(--dur-base) var(--ease-std);
   }
 
   .surface-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 18px 40px rgb(7 17 31 / 0.1);
+    box-shadow: 0 14px 32px rgb(7 17 31 / 0.09);
     border-color: rgb(13 143 156 / 0.35);
   }
 
@@ -210,7 +208,7 @@
     @apply absolute left-0 top-full z-[60] mt-3 w-[min(94vw,820px)] border border-chalk-200 bg-paper p-5;
     border-radius: 18px;
     box-shadow: 0 24px 60px rgb(7 17 31 / 0.14);
-    animation: fade-up 0.28s var(--ease-out);
+    animation: fade-up 0.22s var(--ease-out);
   }
 
   /* Keep last nav mega menus on-screen */
@@ -376,45 +374,31 @@
 
   .scroll-signal__fill {
     height: 100%;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left center;
     background: linear-gradient(90deg, #0d8f9c, #5eead4 55%, #1f4e79);
-    transition: width 80ms linear;
-  }
-
-  .scroll-signal__glow {
-    position: absolute;
-    top: -4px;
-    width: 20px;
-    height: 11px;
-    border-radius: 999px;
-    background: rgb(94 234 212 / 0.85);
-    filter: blur(5px);
-    transition: left 80ms linear;
+    will-change: transform;
   }
 
   /* —— Route change signal —— */
   .page-signal {
     pointer-events: none;
     position: fixed;
-    inset: 0;
+    inset: 0 0 auto 0;
     z-index: 90;
+    height: 3px;
   }
 
   .page-signal__bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 3px;
+    height: 100%;
     width: 0;
     background: linear-gradient(90deg, #0d8f9c, #5eead4);
-    box-shadow: 0 0 16px rgb(13 143 156 / 0.55);
-    animation: page-sweep 0.55s var(--ease-out) forwards;
+    animation: page-sweep 0.38s var(--ease-out) forwards;
   }
 
-  .page-signal__flash {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(105deg, rgb(13 143 156 / 0.08), transparent 45%);
-    animation: page-flash 0.55s var(--ease-out) forwards;
+  .detail-tab-panel {
+    animation: fade-up 0.35s var(--ease-out) both;
   }
 
   .marquee {
@@ -426,51 +410,39 @@
     display: flex;
     width: max-content;
     gap: 2.5rem;
-    animation: marquee 32s linear infinite;
+    animation: marquee 40s linear infinite;
   }
 
-  .float-soft {
-    animation: float-soft 5.5s ease-in-out infinite;
-  }
-
-  .avero-js:not(.avero-ready) .stagger-in > * {
+  .avero-js .stagger-in > * {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(14px);
+    animation: fade-up 0.55s var(--ease-out) both;
   }
 
-  .avero-js.avero-ready .stagger-in > * {
-    animation: fade-up 0.7s var(--ease-out) both;
+  .avero-js .stagger-in > *:nth-child(1) {
+    animation-delay: 0.04s;
+  }
+  .avero-js .stagger-in > *:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .avero-js .stagger-in > *:nth-child(3) {
+    animation-delay: 0.16s;
+  }
+  .avero-js .stagger-in > *:nth-child(4) {
+    animation-delay: 0.22s;
+  }
+  .avero-js .stagger-in > *:nth-child(5) {
+    animation-delay: 0.28s;
+  }
+  .avero-js .stagger-in > *:nth-child(6) {
+    animation-delay: 0.34s;
   }
 
-  .avero-js.avero-ready .stagger-in > *:nth-child(1) {
-    animation-delay: 0.05s;
-  }
-  .avero-js.avero-ready .stagger-in > *:nth-child(2) {
-    animation-delay: 0.12s;
-  }
-  .avero-js.avero-ready .stagger-in > *:nth-child(3) {
-    animation-delay: 0.19s;
-  }
-  .avero-js.avero-ready .stagger-in > *:nth-child(4) {
-    animation-delay: 0.26s;
-  }
-  .avero-js.avero-ready .stagger-in > *:nth-child(5) {
-    animation-delay: 0.33s;
-  }
-  .avero-js.avero-ready .stagger-in > *:nth-child(6) {
-    animation-delay: 0.4s;
-  }
-
-  .avero-js.avero-ready .hero-ken {
-    will-change: transform;
-    transform-origin: 52% 48%;
-    animation: hero-orbit 36s ease-in-out infinite alternate;
-  }
-
-  .avero-js.avero-ready .page-hero-ken {
-    will-change: transform;
-    transform-origin: 60% 40%;
-    animation: hero-orbit 42s ease-in-out infinite alternate-reverse;
+  /* Static hero crop — no continuous orbit (was causing stick/flicker on low CPU). */
+  .avero-js .hero-ken,
+  .avero-js .page-hero-ken {
+    transform: scale(1.05);
+    transform-origin: 50% 45%;
   }
 }
 
@@ -479,130 +451,77 @@
     text-wrap: balance;
   }
 
-  .reveal-ready,
-  .reveal-ready-left,
-  .reveal-ready-right,
-  .reveal-ready-scale,
-  .reveal-ready-fade,
-  .reveal-ready-rise,
-  .reveal-ready-blur {
+  /* Hidden until .reveal--in — only when JS motion flag is present (before paint). */
+  .avero-js .reveal:not(.reveal--in) {
     opacity: 0;
-    will-change: opacity, transform;
-    transition:
-      opacity 0.85s var(--ease-out),
-      transform 0.85s var(--ease-out);
+    transform: translate3d(0, 22px, 0);
   }
 
-  .reveal-ready {
-    transform: translate3d(0, 40px, 0);
-  }
-
-  .reveal-ready-rise {
-    transform: translate3d(0, 56px, 0) scale(0.985);
-  }
-
-  .reveal-ready-left {
-    transform: translate3d(-48px, 18px, 0);
-  }
-
-  .reveal-ready-right {
-    transform: translate3d(48px, 18px, 0);
-  }
-
-  .reveal-ready-scale {
-    transform: scale(0.92) translate3d(0, 20px, 0);
-  }
-
-  .reveal-ready-fade {
-    transform: none;
-  }
-
-  .reveal-ready-blur {
+  .avero-js .reveal--rise:not(.reveal--in) {
     transform: translate3d(0, 28px, 0);
   }
 
-  .reveal-in {
-    opacity: 1;
-    transform: none;
-    will-change: auto;
-    transition:
-      opacity 0.85s var(--ease-out),
-      transform 0.85s var(--ease-out);
+  .avero-js .reveal--left:not(.reveal--in) {
+    transform: translate3d(-24px, 10px, 0);
   }
 
-  .reveal-group > *:nth-child(1) { transition-delay: 0.05s; }
-  .reveal-group > *:nth-child(2) { transition-delay: 0.12s; }
-  .reveal-group > *:nth-child(3) { transition-delay: 0.19s; }
-  .reveal-group > *:nth-child(4) { transition-delay: 0.26s; }
-  .reveal-group > *:nth-child(5) { transition-delay: 0.33s; }
-  .reveal-group > *:nth-child(6) { transition-delay: 0.4s; }
+  .avero-js .reveal--right:not(.reveal--in) {
+    transform: translate3d(24px, 10px, 0);
+  }
+
+  .avero-js .reveal--scale:not(.reveal--in) {
+    transform: scale(0.97) translate3d(0, 14px, 0);
+  }
+
+  .avero-js .reveal--fade:not(.reveal--in),
+  .avero-js .reveal--blur:not(.reveal--in) {
+    transform: none;
+  }
+
+  .avero-js .reveal {
+    transition:
+      opacity 0.55s var(--ease-out),
+      transform 0.55s var(--ease-out);
+  }
+
+  .avero-js .reveal.reveal--in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .avero-js.avero-reduce .reveal,
+  .avero-js.avero-reduce .reveal:not(.reveal--in) {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .reveal-group > *:nth-child(1) { transition-delay: 0.04s; }
+  .reveal-group > *:nth-child(2) { transition-delay: 0.1s; }
+  .reveal-group > *:nth-child(3) { transition-delay: 0.16s; }
+  .reveal-group > *:nth-child(4) { transition-delay: 0.22s; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .avero-js.avero-ready .hero-ken,
-  .avero-js.avero-ready .page-hero-ken,
-  .avero-js:not(.avero-ready) .stagger-in > *,
-  .avero-js.avero-ready .stagger-in > *,
-  .reveal-ready,
-  .reveal-ready-left,
-  .reveal-ready-right,
-  .reveal-ready-scale,
-  .reveal-ready-fade,
-  .reveal-ready-rise,
-  .reveal-ready-blur,
-  .reveal-in,
+  .avero-js .hero-ken,
+  .avero-js .page-hero-ken,
+  .avero-js .stagger-in > *,
+  .avero-js .reveal,
   .stagger-in > *,
   .marquee__track,
-  .float-soft,
-  .avero-boot,
-  .avero-boot__grid,
-  .avero-boot__fill,
-  .avero-boot__beam,
-  .avero-boot__node,
-  .page-signal__bar,
-  .page-signal__flash {
+  .detail-tab-panel,
+  .page-signal__bar {
     animation: none !important;
     transition: none !important;
     opacity: 1 !important;
     transform: none !important;
-    filter: none !important;
-  }
-
-  .avero-boot {
-    display: none !important;
   }
 }
+
 
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(16px); }
+  from { opacity: 0; transform: translateY(14px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes ken {
-  from { transform: scale(1); }
-  to { transform: scale(1.08); }
-}
-
-@keyframes hero-orbit {
-  0% {
-    transform: scale(1.08) translate3d(-1.6%, 0.8%, 0) rotate(-0.6deg);
-  }
-  50% {
-    transform: scale(1.12) translate3d(1.4%, -1%, 0) rotate(0.5deg);
-  }
-  100% {
-    transform: scale(1.1) translate3d(-0.8%, 1.2%, 0) rotate(-0.3deg);
-  }
-}
-
-@keyframes page-sweep {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes page-flash {
-  0% { opacity: 0.55; }
-  100% { opacity: 0; }
 }
 
 @keyframes marquee {
@@ -610,14 +529,15 @@
   to { transform: translateX(-50%); }
 }
 
-@keyframes float-soft {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+@keyframes page-sweep {
+  0% { width: 0; opacity: 0.45; }
+  45% { width: 72%; opacity: 1; }
+  100% { width: 100%; opacity: 0; }
 }
 
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.55; }
-  50% { opacity: 0.9; }
+@keyframes boot-grid {
+  from { background-position: 0 0; }
+  to { background-position: 48px 48px; }
 }
 
 @keyframes boot-rise {
@@ -643,9 +563,4 @@
 @keyframes boot-scan {
   0% { transform: translateX(-120%); }
   100% { transform: translateX(280%); }
-}
-
-@keyframes boot-grid {
-  from { background-position: 0 0; }
-  to { background-position: 48px 48px; }
 }

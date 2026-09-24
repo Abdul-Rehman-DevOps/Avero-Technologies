@@ -1,25 +1,18 @@
 "use client";
 
-import {
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-  type CSSProperties,
-  type ReactNode,
-} from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 
 type RevealVariant = "up" | "left" | "right" | "scale" | "fade" | "rise" | "blur";
 
 /**
- * Scroll fade that works on first load and after route changes.
- * Does not wait for boot — arms immediately so the first visit animates.
+ * Lightweight scroll fade for low-CPU clients.
+ * Starts hidden under .avero-js (set before paint), then fades once in view.
  */
 export function Reveal({
   children,
   className = "",
-  variant = "rise",
+  variant = "up",
   delay = 0,
 }: {
   children: ReactNode;
@@ -29,101 +22,73 @@ export function Reveal({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
-  const [armed, setArmed] = useState(false);
-  const [visible, setVisible] = useState(false);
-
-  useLayoutEffect(() => {
-    setVisible(false);
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setVisible(true);
-      setArmed(false);
-      return;
-    }
-    // Arm after paint so opacity:0 is applied before we reveal (first visit + route changes).
-    setArmed(false);
-    const frame = window.requestAnimationFrame(() => setArmed(true));
-    return () => window.cancelAnimationFrame(frame);
-  }, [pathname]);
+  const [shown, setShown] = useState(false);
 
   useEffect(() => {
-    if (!armed || visible) return;
+    setShown(false);
     const node = ref.current;
     if (!node) return;
 
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setShown(true);
+      return;
+    }
+
     let cancelled = false;
     let delayTimer = 0;
-    let fallbackTimer = 0;
-    let revealed = false;
+    let done = false;
 
-    const reveal = () => {
-      if (cancelled || revealed) return;
-      revealed = true;
-      delayTimer = window.setTimeout(() => {
-        if (!cancelled) setVisible(true);
-      }, delay);
+    const show = () => {
+      if (cancelled || done) return;
+      done = true;
+      if (delay > 0) {
+        delayTimer = window.setTimeout(() => {
+          if (!cancelled) setShown(true);
+        }, delay);
+      } else {
+        setShown(true);
+      }
     };
 
-    const inView = () => {
+    const nearViewport = () => {
       const rect = node.getBoundingClientRect();
-      const vh = window.innerHeight || document.documentElement.clientHeight || 0;
-      return rect.bottom > 8 && rect.top < vh - 8;
+      const vh = window.innerHeight || 0;
+      return rect.top < vh * 0.94 && rect.bottom > 0;
     };
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
           observer.disconnect();
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => reveal());
-          });
+          show();
         }
       },
-      { threshold: 0.08, rootMargin: "0px 0px -5% 0px" },
+      { threshold: 0.1, rootMargin: "40px 0px -6% 0px" },
     );
-
     observer.observe(node);
-    if (inView()) {
+
+    // Above-the-fold: one frame so pending styles apply, then fade in.
+    if (nearViewport()) {
       observer.disconnect();
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => reveal());
-      });
+      requestAnimationFrame(() => show());
     }
 
-    fallbackTimer = window.setTimeout(() => reveal(), 1800);
+    const fallback = window.setTimeout(show, 1400);
 
     return () => {
       cancelled = true;
       window.clearTimeout(delayTimer);
-      window.clearTimeout(fallbackTimer);
+      window.clearTimeout(fallback);
       observer.disconnect();
     };
-  }, [armed, delay, visible, pathname]);
-
-  const readyClass =
-    variant === "left"
-      ? "reveal-ready-left"
-      : variant === "right"
-        ? "reveal-ready-right"
-        : variant === "scale"
-          ? "reveal-ready-scale"
-          : variant === "fade"
-            ? "reveal-ready-fade"
-            : variant === "blur"
-              ? "reveal-ready-blur"
-              : variant === "up"
-                ? "reveal-ready"
-                : "reveal-ready-rise";
-
-  const style: CSSProperties | undefined =
-    visible && delay > 0 ? { transitionDelay: `${delay}ms` } : undefined;
+  }, [pathname, delay]);
 
   return (
     <div
       ref={ref}
-      className={[armed && !visible ? readyClass : "", visible ? "reveal-in" : "", className]
+      className={["reveal", `reveal--${variant}`, shown ? "reveal--in" : "", className]
         .filter(Boolean)
         .join(" ")}
-      style={style}
     >
       {children}
     </div>

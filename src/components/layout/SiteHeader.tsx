@@ -21,7 +21,6 @@ const navMedia: Record<string, MediaKey> = {
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [activePanel, setActivePanel] = useState<string | null>(null);
   const panelId = useId();
   const headerRef = useRef<HTMLElement>(null);
@@ -40,7 +39,8 @@ export function SiteHeader() {
 
   useEffect(() => {
     function onScroll() {
-      setScrolled(window.scrollY > 12);
+      const next = window.scrollY > 12;
+      headerRef.current?.classList.toggle("site-header--scrolled", next);
     }
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -68,9 +68,7 @@ export function SiteHeader() {
   return (
     <header
       ref={headerRef}
-      className={`site-header sticky top-0 z-50 border-b transition-[border-color,box-shadow] duration-300 ${
-        scrolled ? "border-chalk-200 shadow-soft" : "border-transparent"
-      }`}
+      className="site-header sticky top-0 z-50 border-b border-transparent transition-[border-color,box-shadow] duration-300"
     >
       <Container>
         <div className="relative flex h-16 items-center justify-between gap-4 md:h-[4.25rem]">

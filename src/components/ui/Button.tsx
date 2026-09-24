@@ -5,7 +5,7 @@ const variants = {
   primary:
     "bg-signal text-signal-fg hover:bg-signal-hover border border-transparent shadow-soft",
   secondary:
-    "bg-paper/90 text-ink-950 border border-chalk-200 hover:border-signal/40 hover:bg-chalk-50 backdrop-blur",
+    "bg-paper text-ink-950 border border-chalk-200 hover:border-signal/40 hover:bg-chalk-50",
   tertiary:
     "bg-transparent text-arc hover:text-signal border border-transparent underline-offset-4 hover:underline px-0",
   ink: "bg-ink-950 text-chalk-50 hover:opacity-90 border border-transparent",

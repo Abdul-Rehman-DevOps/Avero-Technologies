@@ -82,6 +82,7 @@ export default async function HomePage() {
             alt={media.hero.alt}
             fill
             priority
+            quality={70}
             className="hero-ken object-cover"
             sizes="100vw"
           />
@@ -90,7 +91,7 @@ export default async function HomePage() {
         <div className="hero-plane__glow" aria-hidden="true" />
         <Container className="hero-plane__content flex min-h-[inherit] flex-col justify-end pb-16 pt-28 md:pb-24 md:pt-36">
           <div className="stagger-in max-w-2xl">
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium tracking-wide text-white/90 backdrop-blur">
+            <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/12 px-3 py-1 text-xs font-medium tracking-wide text-white/90">
               <span className="h-1.5 w-1.5 rounded-full bg-signal" aria-hidden="true" />
               Engineering for production systems
             </p>
@@ -268,7 +269,7 @@ export default async function HomePage() {
               </div>
             </Reveal>
             <Reveal className="lg:col-span-7" variant="right">
-              <div className="media-frame float-soft aspect-[16/10] shadow-lift">
+              <div className="media-frame aspect-[16/10] shadow-lift">
                 <Image
                   src={media.delivery.src}
                   alt={media.delivery.alt}
@@ -443,7 +444,7 @@ export default async function HomePage() {
                     <Button href="/contact">Talk to us</Button>
                   </div>
                 </div>
-                <div className="rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-md">
+                <div className="rounded-2xl border border-white/15 bg-white/12 p-6">
                   <p className="text-xs font-semibold tracking-[0.14em] text-white/60 uppercase">
                     Newsletter
                   </p>

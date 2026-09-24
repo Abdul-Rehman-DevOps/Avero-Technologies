@@ -34,6 +34,7 @@ export function PageHero({
           alt=""
           fill
           priority
+          quality={70}
           className="page-hero-ken object-cover object-center"
           sizes="100vw"
         />
@@ -41,7 +42,7 @@ export function PageHero({
       </div>
       <Container className="relative py-16 md:py-20 lg:py-24">
         <Reveal variant="rise">
-          <div className="max-w-3xl rounded-3xl bg-paper/75 p-6 shadow-[0_12px_40px_rgb(7_17_31/0.08)] backdrop-blur-md md:bg-paper/70 md:p-8">
+          <div className="max-w-3xl rounded-3xl bg-paper/92 p-6 shadow-[0_12px_40px_rgb(7_17_31/0.08)] md:p-8">
             {crumbs?.length ? (
               <nav aria-label="Breadcrumb" className="mb-5">
                 <ol className="flex flex-wrap items-center gap-2 text-sm text-ink-600">

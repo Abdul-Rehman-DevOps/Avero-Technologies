@@ -57,7 +57,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       className={`${display.variable} ${sans.variable} ${mono.variable}`}
+      suppressHydrationWarning
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var d=document.documentElement;d.classList.add('avero-js');if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('avero-reduce');}d.classList.add('avero-ready');}catch(e){document.documentElement.classList.add('avero-js','avero-ready');}})();`,
+          }}
+        />
+      </head>
       <body className="min-h-dvh font-sans">
         <script
           type="application/ld+json"

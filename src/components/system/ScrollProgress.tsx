@@ -32,7 +32,7 @@ export function ScrollProgress() {
         const idx = ids.indexOf(visible.target.id as (typeof ids)[number]);
         if (idx >= 0) setActive(idx);
       },
-      { threshold: [0.2, 0.4], rootMargin: "-18% 0px -45% 0px" },
+      { threshold: [0.25, 0.5], rootMargin: "-20% 0px -40% 0px" },
     );
 
     nodes.forEach((n) => observer.observe(n));
@@ -43,7 +43,7 @@ export function ScrollProgress() {
 
   return (
     <div
-      className="pointer-events-none fixed bottom-5 left-4 z-20 hidden rounded-xl border border-chalk-200 bg-paper/95 px-3.5 py-2.5 shadow-soft backdrop-blur md:block"
+      className="pointer-events-none fixed bottom-5 left-4 z-20 hidden rounded-xl border border-chalk-200 bg-paper px-3.5 py-2.5 shadow-soft md:block"
       aria-hidden="true"
     >
       <p className="font-mono text-[10px] tracking-[0.14em] text-ink-400 uppercase">
@@ -54,7 +54,7 @@ export function ScrollProgress() {
         {stages.map((s, i) => (
           <span
             key={s.id}
-            className={`h-1 w-3 rounded-full transition-colors ${
+            className={`h-1 w-3 rounded-full transition-colors duration-300 ${
               i === active ? "bg-signal" : "bg-chalk-200"
             }`}
           />

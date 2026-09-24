@@ -1,14 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
-/** Top reading progress, glowing signal trail. */
+/** Top reading progress via transform (no layout thrash on scroll). */
 export function ScrollProgressBar() {
-  const [progress, setProgress] = useState(0);
+  const fillRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     let raf = 0;
     function onScroll() {
@@ -16,25 +15,25 @@ export function ScrollProgressBar() {
       raf = requestAnimationFrame(() => {
         const doc = document.documentElement;
         const max = doc.scrollHeight - doc.clientHeight;
-        setProgress(max > 0 ? Math.min(100, (window.scrollY / max) * 100) : 0);
+        const p = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+        if (fillRef.current) {
+          fillRef.current.style.transform = `scaleX(${p})`;
+        }
       });
     }
 
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
     };
   }, []);
 
   return (
     <div className="scroll-signal" aria-hidden="true">
       <div className="scroll-signal__track">
-        <div className="scroll-signal__fill" style={{ width: `${progress}%` }} />
-        <div className="scroll-signal__glow" style={{ left: `calc(${progress}% - 10px)` }} />
+        <div ref={fillRef} className="scroll-signal__fill" />
       </div>
     </div>
   );
