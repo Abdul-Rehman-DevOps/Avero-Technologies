@@ -51,3 +51,4 @@ Recording*.mp4
 push-fix.sh
 .git-commit-push.sh
 _cleanup.sh
+_c2.sh
