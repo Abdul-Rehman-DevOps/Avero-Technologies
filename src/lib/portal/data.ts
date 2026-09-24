@@ -41,10 +41,18 @@ const announcements: PortalAnnouncement[] = [
 /** Real people only — extend as you hire. */
 const directory: DirectoryPerson[] = [
   {
+    id: "d-0",
+    name: "Chief Executive Officer",
+    title: "CEO",
+    department: "Corporate",
+    location: "Remote",
+    email: "contact@avero.com",
+  },
+  {
     id: "d-1",
     name: "Abdul Rehman",
-    title: "CEO & CTO",
-    department: "Corporate",
+    title: "Chief Technology Lead",
+    department: "Engineering",
     location: "Remote",
     email: "contact@avero.com",
   },

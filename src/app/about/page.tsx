@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Section";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { Reveal } from "@/components/visual/Reveal";
+import { content } from "@/lib/content";
 import { media } from "@/lib/media";
 import { siteConfig } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
@@ -42,7 +43,21 @@ const facts = [
   { label: "Phone", value: siteConfig.phoneDisplay },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const [seats, people] = await Promise.all([
+    content.getLeadershipSeats(),
+    content.getPeople(),
+  ]);
+  const peopleBySlug = new Map(people.map((p) => [p.slug, p]));
+  const leaders = seats
+    .slice()
+    .sort((a, b) => a.sortOrder - b.sortOrder)
+    .map((seat) => ({
+      seat,
+      person: seat.personSlug ? peopleBySlug.get(seat.personSlug) ?? null : null,
+    }))
+    .filter((row) => row.person);
+
   return (
     <>
       <PageHero
@@ -87,6 +102,58 @@ export default function AboutPage() {
             </Reveal>
           </div>
 
+          {leaders.length ? (
+            <Reveal className="mt-16">
+              <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+                <div>
+                  <p className="tech-label text-signal">Leadership</p>
+                  <h2 className="font-display mt-2 text-2xl font-bold text-ink-950 md:text-3xl">
+                    CEO and technology leadership
+                  </h2>
+                </div>
+                <Link
+                  href="/about/leadership"
+                  className="text-sm font-semibold text-signal no-underline hover:underline"
+                >
+                  Full profiles →
+                </Link>
+              </div>
+              <div className="grid gap-5 sm:grid-cols-2">
+                {leaders.map(({ seat, person }, i) =>
+                  person ? (
+                    <Link
+                      key={seat.seatId}
+                      href="/about/leadership"
+                      className="group flex gap-4 rounded-3xl border border-chalk-200 bg-paper p-4 no-underline shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-signal/35 hover:shadow-lift"
+                    >
+                      <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl bg-chalk-100">
+                        {person.imagePublic ? (
+                          <Image
+                            src={person.imagePublic}
+                            alt=""
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            sizes="96px"
+                            priority={i < 2}
+                          />
+                        ) : null}
+                      </div>
+                      <div className="min-w-0 self-center">
+                        <p className="tech-label text-signal">{seat.title}</p>
+                        <p className="font-display mt-1 text-lg font-semibold text-ink-950">
+                          {person.roleTitle === "CEO" ? person.roleTitle : person.displayName}
+                        </p>
+                        <p className="mt-1 text-sm text-ink-500">
+                          {person.roleTitle === "CEO" ? person.displayName : person.roleTitle}
+                        </p>
+                      </div>
+                    </Link>
+                  ) : null,
+                )}
+              </div>
+            </Reveal>
+          ) : null}
+
           <div className="mt-16 grid gap-4 md:grid-cols-2">
             {principles.map((p, i) => (
               <Reveal key={p.t} delay={i * 60}>
@@ -103,12 +170,12 @@ export default function AboutPage() {
             <p className="tech-label mb-4">Explore</p>
             <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {[
-                ["/about/leadership", "Leadership", "Executive team"],
+                ["/about/leadership", "Leadership", "CEO and technology leadership"],
                 ["/about/people", "People", "Public profiles"],
                 ["/engineering", "Engineering", "How we deliver"],
                 ["/security", "Security", "Security posture"],
                 ["/careers", "Careers", "Open roles"],
-                ["/contact", "Contact", "Project intake"],
+                ["/contact", "Contact", "Ask a question or start a conversation"],
               ].map(([href, label, hint]) => (
                 <li key={href}>
                   <Link

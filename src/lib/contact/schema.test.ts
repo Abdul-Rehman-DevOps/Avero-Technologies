@@ -4,6 +4,7 @@ import { isPublic } from "@/lib/content/repository";
 import { rateLimit } from "@/lib/contact/rate-limit";
 
 const validBase = {
+  intent: "project" as const,
   name: "Ada Lovelace",
   workEmail: "ada@contoso.com",
   company: "Contoso",
@@ -19,6 +20,20 @@ const validBase = {
 describe("contactSchema", () => {
   it("accepts a valid payload", () => {
     const result = contactSchema.safeParse(validBase);
+    expect(result.success).toBe(true);
+  });
+
+  it("accepts a general inquiry without company or budget", () => {
+    const result = contactSchema.safeParse({
+      ...validBase,
+      intent: "general",
+      company: "",
+      role: "",
+      projectType: "other",
+      timeline: "n-a",
+      lookingToBuild: "Question about your services",
+      message: "I have a general question about how Avero engages with new clients.",
+    });
     expect(result.success).toBe(true);
   });
 
@@ -53,10 +68,9 @@ describe("contactSchema", () => {
     }
   });
 
-  it("asks for area and company in plain language", () => {
+  it("asks for area and timeline in plain language", () => {
     const result = contactSchema.safeParse({
       ...validBase,
-      company: "",
       projectType: "",
       timeline: "",
     });
@@ -65,8 +79,7 @@ describe("contactSchema", () => {
       const byPath = Object.fromEntries(
         result.error.issues.map((i) => [i.path.join("."), i.message]),
       );
-      expect(byPath.company).toBe("Company is required");
-      expect(byPath.projectType).toBe("Please select an area");
+      expect(byPath.projectType).toBe("Please select a topic area");
       expect(byPath.timeline).toBe("Please select a timeline");
     }
   });

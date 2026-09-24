@@ -105,7 +105,7 @@ export function getPortalUsers(): StoredUser[] {
       email: adminEmail,
       name: process.env.PORTAL_ADMIN_NAME?.trim() || "Abdul Rehman",
       role: "admin",
-      title: process.env.PORTAL_ADMIN_TITLE?.trim() || "CEO & CTO",
+      title: process.env.PORTAL_ADMIN_TITLE?.trim() || "Chief Technology Lead",
       department: process.env.PORTAL_ADMIN_DEPARTMENT?.trim() || "Corporate",
       passwordHash: hash,
       salt,

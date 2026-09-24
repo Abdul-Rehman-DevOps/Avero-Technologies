@@ -54,7 +54,7 @@ export default function TermsPage() {
               treat placeholder or structural pages as evidence of completed engagements.
             </p>
 
-            <h2>4. Contact and intake</h2>
+            <h2>4. Contact</h2>
             <p>
               Submitting the contact form or emailing us does not create a contract. Any engagement
               begins only when both parties execute a written agreement covering scope, fees,

@@ -5,6 +5,13 @@ import { Button } from "@/components/ui/Button";
 import { contactSchema } from "@/lib/contact/schema";
 import { fieldErrorsFromZod } from "@/lib/validation/messages";
 
+const intents = [
+  { value: "general", label: "General inquiry" },
+  { value: "project", label: "Project discussion" },
+  { value: "partnership", label: "Partnership" },
+  { value: "careers", label: "Careers" },
+] as const;
+
 const projectTypes = [
   { value: "ai", label: "AI / Intelligent systems" },
   { value: "software", label: "Software engineering" },
@@ -13,7 +20,7 @@ const projectTypes = [
   { value: "security", label: "Security / DevSecOps" },
   { value: "data", label: "Data engineering" },
   { value: "advisory", label: "Advisory / architecture" },
-  { value: "other", label: "Other" },
+  { value: "other", label: "Other / not sure yet" },
 ] as const;
 
 const timelines = [
@@ -21,9 +28,11 @@ const timelines = [
   { value: "1-3m", label: "1–3 months" },
   { value: "3-6m", label: "3–6 months" },
   { value: "exploratory", label: "Exploratory / discovery" },
+  { value: "n-a", label: "Not applicable" },
 ] as const;
 
 type FieldErrors = Record<string, string[] | undefined>;
+type Intent = (typeof intents)[number]["value"] | "";
 
 const fieldClass =
   "min-h-11 w-full rounded-xl border border-chalk-200 bg-paper px-3.5 text-ink-950 transition-[border-color,box-shadow] duration-150 focus:border-signal focus:outline-none focus:ring-2 focus:ring-signal/20";
@@ -36,6 +45,9 @@ export function ContactForm() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const [intent, setIntent] = useState<Intent>("");
+
+  const showProjectDetails = intent === "project" || intent === "partnership";
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -47,6 +59,12 @@ export function ContactForm() {
     const form = event.currentTarget;
     const formData = new FormData(form);
     const payload = Object.fromEntries(formData.entries());
+
+    // General inquiries default timeline / area when not project-focused
+    if (!showProjectDetails) {
+      if (!payload.timeline) payload.timeline = "n-a";
+      if (!payload.projectType) payload.projectType = "other";
+    }
 
     const local = contactSchema.safeParse(payload);
     if (!local.success) {
@@ -77,6 +95,7 @@ export function ContactForm() {
 
       setSuccess(true);
       form.reset();
+      setIntent("");
     } catch {
       setError("Connection issue. Please check your network and try again.");
     } finally {
@@ -90,14 +109,14 @@ export function ContactForm() {
         role="status"
         className="rounded-3xl border border-signal/30 bg-signal-subtle p-6 md:p-8"
       >
-        <p className="tech-label text-signal">Intake received</p>
-        <h2 className="font-display mt-3 text-2xl text-ink-950">Thank you — we have your request.</h2>
+        <p className="tech-label text-signal">Message received</p>
+        <h2 className="font-display mt-3 text-2xl text-ink-950">Thank you — we got your note.</h2>
         <p className="mt-3 max-w-lg text-sm text-ink-700">
-          Our team will review your intake and reply to your work email.
+          Our team will reply to your email with a clear next step.
         </p>
         <div className="mt-6">
           <Button type="button" variant="secondary" onClick={() => setSuccess(false)}>
-            Submit another inquiry
+            Send another message
           </Button>
         </div>
       </div>
@@ -109,6 +128,36 @@ export function ContactForm() {
       <div className="absolute -left-[9999px]" aria-hidden="true">
         <label htmlFor="website">Website</label>
         <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+
+      <div className="min-w-0">
+        <label htmlFor="intent" className="mb-1.5 block text-sm font-medium text-ink-800">
+          How can we help?
+        </label>
+        <select
+          id="intent"
+          name="intent"
+          required
+          className={fieldErrors.intent?.length ? fieldErrorClass : fieldClass}
+          value={intent}
+          onChange={(e) => setIntent(e.target.value as Intent)}
+          aria-invalid={Boolean(fieldErrors.intent)}
+        >
+          <option value="" disabled>
+            Select one
+          </option>
+          {intents.map((item) => (
+            <option key={item.value} value={item.value}>
+              {item.label}
+            </option>
+          ))}
+        </select>
+        <FieldError id="intent-error" errors={fieldErrors.intent} />
+        {intent === "general" ? (
+          <p className="mt-1.5 text-xs leading-relaxed text-ink-400">
+            A general question — no project brief required.
+          </p>
+        ) : null}
       </div>
 
       <div className="grid gap-5 md:grid-cols-2">
@@ -124,17 +173,15 @@ export function ContactForm() {
         />
         <Field
           id="company"
-          label="Company"
+          label="Company (optional)"
           name="company"
-          required
           autoComplete="organization"
           errors={fieldErrors.company}
         />
         <Field
           id="role"
-          label="Role"
+          label="Role (optional)"
           name="role"
-          required
           autoComplete="organization-title"
           errors={fieldErrors.role}
         />
@@ -142,66 +189,73 @@ export function ContactForm() {
 
       <Field
         id="lookingToBuild"
-        label="What are you looking to build?"
+        label="What would you like to discuss?"
         name="lookingToBuild"
         required
         errors={fieldErrors.lookingToBuild}
-        hint="One sentence on the outcome or system."
+        hint="A short line is enough — question, idea, or context."
       />
 
-      <div className="grid items-start gap-5 md:grid-cols-2">
-        <div className="min-w-0">
-          <label htmlFor="projectType" className="mb-1.5 block text-sm font-medium text-ink-800">
-            Area
-          </label>
-          <select
-            id="projectType"
-            name="projectType"
-            required
-            className={fieldErrors.projectType?.length ? fieldErrorClass : fieldClass}
-            defaultValue=""
-            aria-invalid={Boolean(fieldErrors.projectType)}
-            aria-describedby={fieldErrors.projectType ? "projectType-error" : undefined}
-          >
-            <option value="" disabled>
-              Select an area
-            </option>
-            {projectTypes.map((type) => (
-              <option key={type.value} value={type.value}>
-                {type.label}
+      {showProjectDetails ? (
+        <div className="grid items-start gap-5 md:grid-cols-2">
+          <div className="min-w-0">
+            <label htmlFor="projectType" className="mb-1.5 block text-sm font-medium text-ink-800">
+              Area
+            </label>
+            <select
+              id="projectType"
+              name="projectType"
+              required
+              className={fieldErrors.projectType?.length ? fieldErrorClass : fieldClass}
+              defaultValue=""
+              aria-invalid={Boolean(fieldErrors.projectType)}
+            >
+              <option value="" disabled>
+                Select an area
               </option>
-            ))}
-          </select>
-          <FieldError id="projectType-error" errors={fieldErrors.projectType} />
-        </div>
+              {projectTypes.map((type) => (
+                <option key={type.value} value={type.value}>
+                  {type.label}
+                </option>
+              ))}
+            </select>
+            <FieldError id="projectType-error" errors={fieldErrors.projectType} />
+          </div>
 
-        <div className="min-w-0">
-          <label htmlFor="timeline" className="mb-1.5 block text-sm font-medium text-ink-800">
-            Timeline
-          </label>
-          <select
-            id="timeline"
-            name="timeline"
-            required
-            className={fieldErrors.timeline?.length ? fieldErrorClass : fieldClass}
-            defaultValue=""
-            aria-invalid={Boolean(fieldErrors.timeline)}
-            aria-describedby={fieldErrors.timeline ? "timeline-error" : undefined}
-          >
-            <option value="" disabled>
-              Select a timeline
-            </option>
-            {timelines.map((t) => (
-              <option key={t.value} value={t.value}>
-                {t.label}
+          <div className="min-w-0">
+            <label htmlFor="timeline" className="mb-1.5 block text-sm font-medium text-ink-800">
+              Timeline
+            </label>
+            <select
+              id="timeline"
+              name="timeline"
+              required
+              className={fieldErrors.timeline?.length ? fieldErrorClass : fieldClass}
+              defaultValue=""
+              aria-invalid={Boolean(fieldErrors.timeline)}
+            >
+              <option value="" disabled>
+                Select a timeline
               </option>
-            ))}
-          </select>
-          <FieldError id="timeline-error" errors={fieldErrors.timeline} />
+              {timelines.map((t) => (
+                <option key={t.value} value={t.value}>
+                  {t.label}
+                </option>
+              ))}
+            </select>
+            <FieldError id="timeline-error" errors={fieldErrors.timeline} />
+          </div>
         </div>
-      </div>
+      ) : (
+        <>
+          <input type="hidden" name="projectType" value="other" />
+          <input type="hidden" name="timeline" value="n-a" />
+        </>
+      )}
 
-      <Field id="budget" label="Budget range (optional)" name="budget" errors={fieldErrors.budget} />
+      {showProjectDetails ? (
+        <Field id="budget" label="Budget range (optional)" name="budget" errors={fieldErrors.budget} />
+      ) : null}
 
       <div className="min-w-0">
         <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-ink-800">
@@ -215,8 +269,11 @@ export function ContactForm() {
           maxLength={4000}
           className={`${fieldErrors.message?.length ? fieldErrorClass : fieldClass} py-2.5`}
           aria-invalid={Boolean(fieldErrors.message)}
-          aria-describedby={fieldErrors.message ? "message-error" : undefined}
-          placeholder="Context, constraints, current state, and what success looks like."
+          placeholder={
+            intent === "general"
+              ? "Ask your question — we will reply with a clear next step."
+              : "Share context, goals, or what success looks like."
+          }
         />
         <FieldError id="message-error" errors={fieldErrors.message} />
       </div>
@@ -231,7 +288,7 @@ export function ContactForm() {
       ) : null}
 
       <Button type="submit" disabled={pending}>
-        {pending ? "Sending…" : "Submit project intake"}
+        {pending ? "Sending…" : "Send message"}
       </Button>
     </form>
   );

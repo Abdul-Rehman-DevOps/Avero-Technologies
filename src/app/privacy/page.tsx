@@ -43,7 +43,7 @@ export default function PrivacyPage() {
             </p>
 
             <h2>2. Data we collect</h2>
-            <h3>Contact and project intake</h3>
+            <h3>Contact messages</h3>
             <p>When you submit the contact form or email us, we may process:</p>
             <ul>
               <li>Name, work email, organization, and role</li>

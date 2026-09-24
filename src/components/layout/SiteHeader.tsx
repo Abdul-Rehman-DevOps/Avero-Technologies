@@ -99,12 +99,6 @@ export function SiteHeader() {
           </nav>
 
           <div className="hidden items-center gap-3 xl:flex">
-            <Link
-              href="/portal"
-              className="rounded-lg px-3 py-2 text-sm font-medium text-ink-500 no-underline transition-colors hover:bg-chalk-100 hover:text-ink-950"
-            >
-              Portal
-            </Link>
             <Button href="/contact" size="sm">
               Talk to us
             </Button>
@@ -141,13 +135,6 @@ export function SiteHeader() {
                   onNavigate={() => setOpen(false)}
                 />
               ))}
-              <Link
-                href="/portal"
-                className="border-t border-chalk-200 py-4 text-sm font-medium text-ink-600 no-underline"
-                onClick={() => setOpen(false)}
-              >
-                Employee Portal
-              </Link>
             </nav>
           </Container>
           <div className="fixed inset-x-0 bottom-0 border-t border-chalk-200 bg-paper p-4">
@@ -209,17 +196,13 @@ function DesktopItem({
         <div className="nav-mega">
           <div className="grid gap-5 lg:grid-cols-[200px_1fr]">
             <div className="relative hidden min-h-[180px] overflow-hidden rounded-2xl lg:block">
-              <Image
-                src={shot.src}
-                alt=""
-                fill
-                className="object-cover"
-                sizes="200px"
-              />
+              <Image src={shot.src} alt="" fill className="object-cover" sizes="200px" />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgb(7_17_31/0.15),rgb(7_17_31/0.72))]" />
               <div className="absolute inset-x-0 bottom-0 p-4">
                 <p className="tech-label text-white/70">{item.label}</p>
-                <p className="mt-1 text-sm font-semibold text-white">Explore the {item.label.toLowerCase()} path</p>
+                <p className="mt-1 text-sm font-semibold text-white">
+                  Explore the {item.label.toLowerCase()} path
+                </p>
               </div>
             </div>
             <div>

@@ -7,7 +7,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Contact",
-  description: "Contact Avero Technologies. Email contact@avero.com or use the project intake form.",
+  description: "Contact Avero Technologies for a general inquiry or project discussion.",
   path: "/contact",
 });
 
@@ -17,8 +17,8 @@ export default function ContactPage() {
       <PageHero
         mediaKey="contact"
         label="Contact"
-        title="Talk to Avero"
-        description="Share what you need to build, secure, or operate. We reply with a clear next step."
+        title="Get in touch"
+        description="Ask a question, start a conversation, or share a project idea. We reply with a clear next step."
         crumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
       />
       <Section>
@@ -53,18 +53,21 @@ export default function ContactPage() {
                 </dl>
               </div>
               <div className="rounded-3xl border border-chalk-200 bg-chalk-50 p-6">
-                <p className="tech-label">Before you send</p>
+                <p className="tech-label">Good to know</p>
                 <ul className="mt-4 space-y-3 text-sm text-ink-600">
+                  <li>General questions are welcome — not only project briefs.</li>
                   <li>Use a work email when possible.</li>
                   <li>Do not include secrets or credentials.</li>
-                  <li>Describe current state, constraints, and success criteria.</li>
-                  <li>We rate-limit intake to protect the inbox.</li>
                 </ul>
               </div>
             </Reveal>
             <Reveal className="lg:col-span-8" variant="right">
               <div className="rounded-3xl border border-chalk-200 bg-paper p-5 shadow-soft md:p-8">
-                <p className="tech-label mb-6">Project intake</p>
+                <p className="tech-label mb-2">Message</p>
+                <h2 className="font-display text-2xl font-bold text-ink-950">Send us a note</h2>
+                <p className="mt-2 mb-6 text-sm text-ink-600">
+                  Choose general inquiry or project discussion — whichever fits.
+                </p>
                 <ContactForm />
               </div>
             </Reveal>

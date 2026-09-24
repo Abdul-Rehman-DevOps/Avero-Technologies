@@ -9,6 +9,16 @@ type Props = {
 
 export function PersonProfile({ person, titles, className = "" }: Props) {
   const roleLines = titles?.length ? titles : [person.roleTitle];
+  const isRoleAsName =
+    person.roleTitle === "CEO" ||
+    person.displayName === person.roleTitle ||
+    person.displayName.toLowerCase().includes("chief");
+
+  const heading = isRoleAsName && person.roleTitle === "CEO" ? person.roleTitle : person.displayName;
+  const subLines =
+    isRoleAsName && person.roleTitle === "CEO"
+      ? [person.displayName, ...roleLines.filter((t) => t !== person.displayName && t !== "CEO")]
+      : roleLines;
 
   return (
     <article
@@ -44,9 +54,9 @@ export function PersonProfile({ person, titles, className = "" }: Props) {
       </div>
 
       <div className="min-w-0">
-        <h2 className="font-display text-xl text-ink-950 md:text-2xl">{person.displayName}</h2>
+        <h2 className="font-display text-xl text-ink-950 md:text-2xl">{heading}</h2>
         <ul className="mt-2 space-y-1">
-          {roleLines.map((title) => (
+          {subLines.map((title) => (
             <li key={title} className="text-sm text-ink-700">
               {title}
             </li>

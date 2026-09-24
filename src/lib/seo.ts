@@ -31,7 +31,7 @@ export function buildMetadata({
   return {
     title: fullTitle,
     description,
-    metadataBase: new URL(siteConfig.url),
+    metadataBase: new URL(siteConfig.url || "http://localhost:3000"),
     alternates: { canonical: url },
     robots: noIndex ? { index: false, follow: false } : { index: true, follow: true },
     openGraph: {

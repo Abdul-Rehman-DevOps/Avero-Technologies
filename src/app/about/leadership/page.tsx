@@ -1,14 +1,15 @@
+import Image from "next/image";
+import Link from "next/link";
 import { PageHero } from "@/components/layout/PageHero";
-import { PersonProfile } from "@/components/people/PersonProfile";
 import { PlaceholderNotice } from "@/components/ui/PlaceholderNotice";
 import { Container, Section } from "@/components/ui/Section";
-import { SystemFrame } from "@/components/visual/SystemFrame";
+import { Reveal } from "@/components/visual/Reveal";
 import { content } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Leadership",
-  description: "Leadership at Avero Technologies.",
+  description: "Leadership at Avero Technologies — CEO and Chief Technology Lead.",
   path: "/about/leadership",
 });
 
@@ -20,70 +21,99 @@ export default async function LeadershipPage() {
 
   const peopleBySlug = new Map(people.map((p) => [p.slug, p]));
 
-  /** One person may hold multiple seats. Never render the same person twice. */
-  const byPerson = new Map<
-    string,
-    { person: (typeof people)[number] | null; titles: string[]; sortOrder: number }
-  >();
-
-  for (const seat of seats.slice().sort((a, b) => a.sortOrder - b.sortOrder)) {
-    const key = seat.personSlug ?? `vacant-${seat.seatId}`;
-    const existing = byPerson.get(key);
-    if (existing) {
-      existing.titles.push(seat.title);
-    } else {
-      byPerson.set(key, {
-        person: seat.personSlug ? peopleBySlug.get(seat.personSlug) ?? null : null,
-        titles: [seat.title],
-        sortOrder: seat.sortOrder,
-      });
-    }
-  }
-
-  const rows = [...byPerson.values()].sort((a, b) => a.sortOrder - b.sortOrder);
+  const rows = seats
+    .slice()
+    .sort((a, b) => a.sortOrder - b.sortOrder)
+    .map((seat) => ({
+      seat,
+      person: seat.personSlug ? peopleBySlug.get(seat.personSlug) ?? null : null,
+    }));
 
   return (
     <>
       <PageHero
-        index="LDR"
-        label="ORGANIZATION"
-        title="Leadership"
-        description="Roles and people as they exist today."
+        mediaKey="team"
+        label="Leadership"
+        title="People who lead Avero"
+        description="Executive leadership focused on client outcomes and production engineering."
         crumbs={[
           { label: "Home", href: "/" },
           { label: "About", href: "/about" },
           { label: "Leadership" },
         ]}
-        identity="organization"
       />
       <Section>
         <Container>
-          <SystemFrame className="overflow-hidden">
-            <ul>
-              {rows.map((row) =>
-                row.person ? (
-                  <li key={row.person.slug}>
-                    <PersonProfile person={row.person} titles={row.titles} />
-                  </li>
-                ) : (
-                  <li
-                    key={`vacant-${row.titles.join("-")}`}
-                    className="border-b border-chalk-200 px-5 py-6 last:border-0"
-                  >
-                    <p className="font-display text-xl text-ink-950">Seat reserved</p>
-                    <ul className="mt-2 space-y-1">
-                      {row.titles.map((title) => (
-                        <li key={title} className="tech-label text-ink-600">
-                          {title}
-                        </li>
-                      ))}
-                    </ul>
-                    <p className="mt-4 text-sm text-ink-400">Public profile pending approval.</p>
-                  </li>
-                ),
-              )}
-            </ul>
-          </SystemFrame>
+          <div className="grid gap-8 md:grid-cols-2">
+            {rows.map(({ seat, person }, i) =>
+              person ? (
+                <Reveal
+                  key={seat.seatId}
+                  delay={i * 90}
+                  variant={i % 2 === 0 ? "left" : "right"}
+                >
+                  <article className="group surface-card overflow-hidden p-0 transition-shadow duration-300 hover:shadow-lift">
+                    <div className="relative aspect-[4/5] overflow-hidden bg-chalk-100 sm:aspect-[5/6]">
+                      {person.imagePublic ? (
+                        <Image
+                          src={person.imagePublic}
+                          alt={`${person.displayName}, ${seat.title}`}
+                          fill
+                          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                          sizes="(max-width:768px) 100vw, 50vw"
+                          priority={i < 2}
+                        />
+                      ) : null}
+                      <div className="absolute inset-x-0 bottom-0 bg-[linear-gradient(180deg,transparent,rgb(7_17_31/0.88))] p-6 pt-24">
+                        <p className="tech-label text-signal">{seat.title}</p>
+                        <h2 className="font-display mt-2 text-2xl font-bold text-white md:text-3xl">
+                          {person.displayName === seat.title || person.roleTitle === "CEO"
+                            ? person.roleTitle
+                            : person.displayName}
+                        </h2>
+                        {person.roleTitle === "CEO" ? (
+                          <p className="mt-1 text-sm text-white/70">{person.displayName}</p>
+                        ) : (
+                          <p className="mt-1 text-sm text-white/70">{person.roleTitle}</p>
+                        )}
+                      </div>
+                    </div>
+                    <div className="p-6">
+                      {person.expertise.length ? (
+                        <p className="text-xs tracking-wide text-ink-400 uppercase">
+                          {person.expertise.slice(0, 4).join(" · ")}
+                        </p>
+                      ) : null}
+                      {person.bioPublic ? (
+                        <p className="mt-3 text-sm leading-relaxed text-ink-600">
+                          {person.bioPublic}
+                        </p>
+                      ) : null}
+                    </div>
+                  </article>
+                </Reveal>
+              ) : (
+                <div
+                  key={seat.seatId}
+                  className="rounded-3xl border border-dashed border-chalk-200 p-6"
+                >
+                  <p className="font-display text-xl text-ink-950">Seat reserved</p>
+                  <p className="mt-2 text-sm text-ink-500">{seat.title}</p>
+                </div>
+              ),
+            )}
+          </div>
+
+          <Reveal className="mt-10">
+            <p className="text-sm text-ink-500">
+              See all public profiles on the{" "}
+              <Link href="/about/people" className="font-semibold text-signal no-underline hover:underline">
+                People
+              </Link>{" "}
+              page.
+            </p>
+          </Reveal>
+
           {!people.length ? (
             <div className="mt-8">
               <PlaceholderNotice title="Leadership profiles pending">

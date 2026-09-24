@@ -436,7 +436,7 @@ export default async function HomePage() {
                   Email us at {siteConfig.email} or call {siteConfig.phoneDisplay}.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <Button href="/contact">Contact form</Button>
+                  <Button href="/contact">Talk to us</Button>
                   <Button href={`mailto:${siteConfig.email}`} variant="ghost">
                     {siteConfig.email}
                   </Button>

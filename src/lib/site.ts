@@ -1,10 +1,24 @@
+function siteUrl(): string {
+  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (raw) return raw.replace(/\/$/, "");
+  // Vercel sets these automatically when the project is linked.
+  const vercel =
+    process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim() ||
+    process.env.VERCEL_URL?.trim();
+  if (vercel) {
+    const host = vercel.replace(/^https?:\/\//, "");
+    return `https://${host}`;
+  }
+  return "http://localhost:3000";
+}
+
 export const siteConfig = {
   name: "Avero",
   legalName: "Avero Technologies",
   tagline: "Systems built for production.",
   description:
     "Avero Technologies designs and delivers software, cloud, AI, platform, security, and data systems for production workloads.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url: siteUrl(),
   locale: "en_US",
   phoneDisplay: "+92 303 9692131",
   phoneTel: "+923039692131",
@@ -161,7 +175,6 @@ export const navPrimary: readonly NavItem[] = [
       { label: "Incident readiness", href: "/insights/incident-ready-by-default" },
     ],
   },
-  { label: "Contact", href: "/contact" },
 ] as const;
 
 export const navSecondary = [
@@ -170,7 +183,6 @@ export const navSecondary = [
   { label: "Capabilities", href: "/capabilities" },
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },
-  { label: "Employee Portal", href: "/portal" },
 ] as const;
 
 export const footerNav = [
@@ -186,7 +198,6 @@ export const footerNav = [
   { label: "Technology", href: "/technology" },
   { label: "Engineering", href: "/engineering" },
   { label: "Security", href: "/security" },
-  { label: "Employee Portal", href: "/portal" },
 ] as const;
 
 export const capabilityNodes = [

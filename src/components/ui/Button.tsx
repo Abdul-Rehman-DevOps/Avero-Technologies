@@ -48,8 +48,8 @@ export function Button({
   ...props
 }: ButtonAsButton | ButtonAsLink) {
   const classes = [
-    "group inline-flex items-center justify-center gap-2 rounded-xl font-semibold tracking-tight transition-all duration-200",
-    "disabled:cursor-not-allowed disabled:opacity-50 no-underline",
+    "group inline-flex items-center justify-center gap-2 rounded-xl font-semibold tracking-tight transition-all duration-200 ease-out",
+    "hover:-translate-y-0.5 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 no-underline",
     variants[variant],
     sizes[size],
     className,

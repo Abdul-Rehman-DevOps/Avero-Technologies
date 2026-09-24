@@ -13,8 +13,8 @@ type CtaBandProps = {
 };
 
 export function CtaBand({
-  title = "Tell us what you need to ship next",
-  description = `Email ${siteConfig.email} or use the project intake form. We respond with a clear next step.`,
+  title = "Tell us what you need next",
+  description = `Email ${siteConfig.email} or send a message — general questions and project ideas are both welcome.`,
   primaryHref = "/contact",
   primaryLabel = "Talk to us",
 }: CtaBandProps) {

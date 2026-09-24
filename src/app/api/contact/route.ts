@@ -68,11 +68,12 @@ export async function POST(request: Request) {
   }
 
   const text = [
+    `Intent: ${data.intent}`,
     `Name: ${data.name}`,
     `Work email: ${data.workEmail}`,
     `Company: ${data.company}`,
     `Role: ${data.role}`,
-    `Looking to build: ${data.lookingToBuild}`,
+    `Topic: ${data.lookingToBuild}`,
     `Area: ${data.projectType}`,
     `Timeline: ${data.timeline}`,
     `Budget: ${data.budget || "n/a"}`,
@@ -86,7 +87,7 @@ export async function POST(request: Request) {
       to: to || "dev-null@localhost",
       from,
       replyTo: data.workEmail,
-      subject: `[Avero Contact] ${data.projectType} / ${data.company}`,
+      subject: `[Avero ${data.intent}] ${data.projectType} / ${data.company}`,
       text,
     });
   } catch (error) {

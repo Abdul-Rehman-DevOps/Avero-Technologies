@@ -52,16 +52,15 @@ export default async function PeoplePage() {
   return (
     <>
       <PageHero
-        index="PPL"
-        label="ORGANIZATION"
-        title="People"
+        mediaKey="team"
+        label="People"
+        title="Our team"
         description="Public profiles for approved team members."
         crumbs={[
           { label: "Home", href: "/" },
           { label: "About", href: "/about" },
           { label: "People" },
         ]}
-        identity="organization"
       />
       <Section>
         <Container>
