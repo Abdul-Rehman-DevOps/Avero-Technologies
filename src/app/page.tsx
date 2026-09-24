@@ -94,7 +94,7 @@ export default async function HomePage() {
               <span className="status-chip__dot" aria-hidden="true" />
               Live systems engineering
             </p>
-            <p className="mt-7 font-display text-[clamp(3.6rem,12vw,7.8rem)] font-extrabold leading-[0.86] tracking-[-0.04em] text-white">
+            <p className="mt-7 font-display text-[clamp(3.6rem,12vw,7.8rem)] font-bold leading-[0.86] tracking-[-0.04em] text-white">
               Avero
             </p>
             <p className="mt-3 font-mono text-[11px] font-medium tracking-[0.28em] text-signal uppercase md:text-xs">

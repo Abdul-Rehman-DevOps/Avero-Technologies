@@ -31,7 +31,7 @@ const config: Config = {
       fontFamily: {
         display: [
           "var(--font-display)",
-          "Syne",
+          "Space Grotesk",
           "Segoe UI",
           "ui-sans-serif",
           "system-ui",
@@ -39,7 +39,7 @@ const config: Config = {
         ],
         sans: [
           "var(--font-sans)",
-          "Outfit",
+          "Source Sans 3",
           "Segoe UI",
           "ui-sans-serif",
           "system-ui",

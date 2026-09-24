@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Outfit, Syne } from "next/font/google";
+import { IBM_Plex_Mono, Source_Sans_3, Space_Grotesk } from "next/font/google";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SkipLink } from "@/components/layout/SkipLink";
@@ -11,17 +11,17 @@ import { buildMetadata, organizationJsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
-const display = Syne({
+const display = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
-  weight: ["500", "600", "700", "800"],
+  weight: ["500", "600", "700"],
   fallback: ["Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
   adjustFontFallback: true,
   preload: true,
 });
 
-const sans = Outfit({
+const sans = Source_Sans_3({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
