@@ -90,11 +90,7 @@ export default async function HomePage() {
         <div className="hero-plane__glow" aria-hidden="true" />
         <Container className="hero-plane__content flex min-h-[inherit] flex-col justify-end pb-16 pt-28 md:pb-24 md:pt-36">
           <div className="stagger-in max-w-3xl">
-            <p className="status-chip">
-              <span className="status-chip__dot" aria-hidden="true" />
-              Live systems engineering
-            </p>
-            <p className="mt-7 font-display text-[clamp(3.6rem,12vw,7.8rem)] font-bold leading-[0.86] tracking-[-0.04em] text-white">
+            <p className="font-display text-[clamp(3.6rem,12vw,7.8rem)] font-bold leading-[0.86] tracking-[-0.04em] text-white">
               Avero
             </p>
             <p className="mt-3 font-mono text-[11px] font-medium tracking-[0.28em] text-signal uppercase md:text-xs">
