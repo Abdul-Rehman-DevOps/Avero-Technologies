@@ -88,26 +88,25 @@ export default async function HomePage() {
         <div className="hero-plane__veil" />
         <div className="hero-plane__grid" aria-hidden="true" />
         <div className="hero-plane__glow" aria-hidden="true" />
-        <Container className="hero-plane__content flex min-h-[inherit] flex-col justify-end pb-14 pt-28 md:pb-20 md:pt-36">
-          <div className="stagger-in hero-plate">
+        <Container className="hero-plane__content flex min-h-[inherit] flex-col justify-end pb-16 pt-28 md:pb-24 md:pt-36">
+          <div className="stagger-in max-w-3xl">
             <p className="status-chip">
               <span className="status-chip__dot" aria-hidden="true" />
               Live systems engineering
             </p>
-            <p className="mt-6 font-display text-[clamp(3.4rem,11vw,6.8rem)] font-bold leading-[0.86] tracking-[-0.04em] text-white drop-shadow-[0_8px_28px_rgb(5_11_20/0.45)]">
+            <p className="mt-7 font-display text-[clamp(3.6rem,12vw,7.8rem)] font-bold leading-[0.86] tracking-[-0.04em] text-white">
               Avero
             </p>
-            <p className="mt-3 font-mono text-[11px] font-medium tracking-[0.24em] text-[#7de4ef] uppercase md:text-xs">
+            <p className="mt-3 font-mono text-[11px] font-medium tracking-[0.28em] text-signal uppercase md:text-xs">
               Technologies · Production systems
             </p>
-            <div className="section-rule mt-6 max-w-[12rem]" aria-hidden="true" />
-            <h1 className="mt-6 max-w-xl font-display text-2xl font-semibold leading-tight tracking-tight text-white md:text-[2.2rem]">
+            <h1 className="mt-8 max-w-xl font-display text-2xl font-semibold leading-tight tracking-tight text-white md:text-[2.35rem]">
               Systems built for production.
             </h1>
-            <p className="mt-4 max-w-lg text-base leading-relaxed text-white/90 md:text-lg">
+            <p className="mt-4 max-w-lg text-base leading-relaxed text-white/78 md:text-lg">
               Software, cloud, AI, platforms, security, and data engineered for real production load.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Button href="/contact" size="lg">
                 Talk to us
               </Button>
@@ -170,7 +169,7 @@ export default async function HomePage() {
                 </h2>
               </div>
               <p className="max-w-sm text-sm leading-relaxed text-ink-600 md:text-base">
-                Immersive delivery across build, secure, and operate. Not bolted-on afterthoughts.
+                Immersive delivery across build, secure, and operate — not bolted-on afterthoughts.
               </p>
             </div>
           </Reveal>
@@ -223,31 +222,23 @@ export default async function HomePage() {
               All services
             </Button>
           </div>
-          <div className="mt-10 bento-grid">
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {featuredServices.map((service, i) => (
-              <Reveal key={service.slug} delay={i * 45}>
+              <Reveal key={service.slug} delay={i * 50}>
                 <Link
                   href={`/services/${service.slug}`}
-                  className={`surface-card group flex h-full flex-col justify-between p-6 no-underline ${
-                    i === 0 ? "min-h-[18rem]" : ""
-                  }`}
+                  className="surface-card group block h-full p-6 no-underline"
                 >
                   <div className="relative z-[1]">
                     <p className="tech-label text-signal">{service.capability}</p>
-                    <h3
-                      className={`font-display mt-3 font-semibold text-ink-950 transition-colors group-hover:text-signal ${
-                        i === 0 ? "text-2xl md:text-3xl" : "text-xl"
-                      }`}
-                    >
+                    <h3 className="font-display mt-3 text-xl font-semibold text-ink-950 transition-colors group-hover:text-signal">
                       {service.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-600 md:text-[0.95rem]">
-                      {service.summary}
+                    <p className="mt-2 text-sm leading-relaxed text-ink-600">{service.summary}</p>
+                    <p className="mt-5 text-sm font-semibold text-signal opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100">
+                      Open service →
                     </p>
                   </div>
-                  <p className="relative z-[1] mt-6 text-sm font-semibold text-signal transition-transform group-hover:translate-x-1">
-                    Open service →
-                  </p>
                 </Link>
               </Reveal>
             ))}

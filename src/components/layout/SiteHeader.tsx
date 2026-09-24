@@ -68,7 +68,7 @@ export function SiteHeader() {
   return (
     <header
       ref={headerRef}
-      className="site-header sticky top-0 z-50 border-b border-transparent"
+      className="site-header sticky top-0 z-50 border-b border-transparent transition-[border-color,box-shadow] duration-300"
     >
       <Container>
         <div className="relative flex h-16 items-center justify-between gap-4 md:h-[4.25rem]">
