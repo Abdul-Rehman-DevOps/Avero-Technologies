@@ -1,37 +1,55 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
+
+function markReady() {
+  document.documentElement.classList.add("avero-ready");
+  window.dispatchEvent(new Event("avero:boot-done"));
+}
 
 /**
- * Avero Signal Boot, first-visit full-screen loader.
- * Geometric mark + scanning signal beam. Session-once.
+ * Avero Signal Boot: first-visit full-screen loader (session-once).
+ * Marks html.avero-ready when finished so page fades/stagger run after the veil lifts.
  */
 export function BootLoader() {
   const [phase, setPhase] = useState<"boot" | "exit" | "done">("boot");
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    document.documentElement.classList.add("avero-js");
+
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const seen = sessionStorage.getItem("avero-boot") === "1";
+    let seen = false;
+    try {
+      seen = sessionStorage.getItem("avero-boot") === "1";
+    } catch {
+      seen = true;
+    }
 
     if (reduced || seen) {
       setPhase("done");
+      markReady();
       return;
     }
 
-    const prev = document.body.style.overflow;
+    const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
     const exitAt = window.setTimeout(() => setPhase("exit"), 1450);
     const doneAt = window.setTimeout(() => {
-      sessionStorage.setItem("avero-boot", "1");
-      document.body.style.overflow = prev;
+      try {
+        sessionStorage.setItem("avero-boot", "1");
+      } catch {
+        /* ignore */
+      }
+      document.body.style.overflow = prevOverflow;
       setPhase("done");
+      markReady();
     }, 2100);
 
     return () => {
       window.clearTimeout(exitAt);
       window.clearTimeout(doneAt);
-      document.body.style.overflow = prev;
+      document.body.style.overflow = prevOverflow;
     };
   }, []);
 

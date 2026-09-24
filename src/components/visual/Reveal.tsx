@@ -1,11 +1,29 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from "react";
 
 type RevealVariant = "up" | "left" | "right" | "scale" | "fade" | "rise" | "blur";
 
+function bootAlreadyDone(): boolean {
+  if (typeof window === "undefined") return false;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return true;
+  try {
+    return sessionStorage.getItem("avero-boot") === "1";
+  } catch {
+    return true;
+  }
+}
+
 /**
- * Scroll-triggered reveal with blur / rise / slide variants.
+ * Scroll-triggered reveal. Arms hidden styles before paint, then waits for
+ * boot + intersection so first load and client navigations both animate.
  */
 export function Reveal({
   children,
@@ -19,55 +37,93 @@ export function Reveal({
   delay?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [phase, setPhase] = useState<"ssr" | "hidden" | "shown">("ssr");
+  const [armed, setArmed] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  useLayoutEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      setVisible(true);
+      return;
+    }
+    // Apply "from" styles before the browser paints so the transition can run.
+    setArmed(true);
+  }, []);
 
   useEffect(() => {
+    if (!armed || visible) return;
     const node = ref.current;
     if (!node) return;
 
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) {
-      setPhase("shown");
-      return;
-    }
-
     let cancelled = false;
     let delayTimer = 0;
-    setPhase("hidden");
+    let startTimer = 0;
+    let fallbackTimer = 0;
 
     const reveal = () => {
+      if (cancelled) return;
+      window.clearTimeout(delayTimer);
       delayTimer = window.setTimeout(() => {
-        if (!cancelled) setPhase("shown");
+        if (!cancelled) setVisible(true);
       }, delay);
+    };
+
+    const inView = () => {
+      const rect = node.getBoundingClientRect();
+      const vh = window.innerHeight || 0;
+      return rect.top < vh * 0.92 && rect.bottom > 0;
     };
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              if (!cancelled) reveal();
-            });
-          });
           observer.disconnect();
+          // One frame after arming so opacity:0 is committed before reveal-in.
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => reveal());
+          });
         }
       },
-      { threshold: 0.08, rootMargin: "0px 0px -12% 0px" },
+      { threshold: 0.1, rootMargin: "0px 0px -6% 0px" },
     );
 
-    observer.observe(node);
+    const startObserving = () => {
+      if (cancelled) return;
+      observer.observe(node);
+      if (inView()) {
+        observer.disconnect();
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => reveal());
+        });
+      }
+    };
 
-    const fallback = window.setTimeout(() => {
-      if (!cancelled) setPhase("shown");
-    }, 2400);
+    const onBootDone = () => {
+      window.clearTimeout(startTimer);
+      startTimer = window.setTimeout(startObserving, 40);
+    };
+
+    if (bootAlreadyDone() || document.documentElement.classList.contains("avero-ready")) {
+      startTimer = window.setTimeout(startObserving, 40);
+    } else {
+      window.addEventListener("avero:boot-done", onBootDone);
+      // Safety if the event was missed
+      startTimer = window.setTimeout(startObserving, 2600);
+    }
+
+    fallbackTimer = window.setTimeout(() => {
+      if (!cancelled) setVisible(true);
+    }, 5000);
 
     return () => {
       cancelled = true;
       window.clearTimeout(delayTimer);
-      window.clearTimeout(fallback);
+      window.clearTimeout(startTimer);
+      window.clearTimeout(fallbackTimer);
       observer.disconnect();
+      window.removeEventListener("avero:boot-done", onBootDone);
     };
-  }, [delay]);
+  }, [armed, delay, visible]);
 
   const readyClass =
     variant === "left"
@@ -85,16 +141,12 @@ export function Reveal({
                 : "reveal-ready-rise";
 
   const style: CSSProperties | undefined =
-    phase === "shown" && delay > 0 ? { transitionDelay: `${delay}ms` } : undefined;
+    visible && delay > 0 ? { transitionDelay: `${delay}ms` } : undefined;
 
   return (
     <div
       ref={ref}
-      className={[
-        phase === "hidden" ? readyClass : "",
-        phase === "shown" ? "reveal-in" : "",
-        className,
-      ]
+      className={[armed && !visible ? readyClass : "", visible ? "reveal-in" : "", className]
         .filter(Boolean)
         .join(" ")}
       style={style}

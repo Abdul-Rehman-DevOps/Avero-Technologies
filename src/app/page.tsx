@@ -82,8 +82,7 @@ export default async function HomePage() {
             alt={media.hero.alt}
             fill
             priority
-            className="object-cover"
-            style={{ animation: "ken 20s ease-out forwards" }}
+            className="hero-ken object-cover"
             sizes="100vw"
           />
         </div>
