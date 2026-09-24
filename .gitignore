@@ -46,3 +46,8 @@ next-env.d.ts
 # local captures
 Recording*.mp4
 .tmp-frames/
+
+# local helper scripts
+push-fix.sh
+.git-commit-push.sh
+_cleanup.sh
