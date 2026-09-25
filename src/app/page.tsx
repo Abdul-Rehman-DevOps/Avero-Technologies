@@ -89,20 +89,20 @@ export default async function HomePage() {
         <div className="hero-plane__grid" aria-hidden="true" />
         <div className="hero-plane__glow" aria-hidden="true" />
         <Container className="hero-plane__content flex min-h-[inherit] flex-col justify-end pb-16 pt-28 md:pb-24 md:pt-36">
-          <div className="stagger-in max-w-3xl">
-            <p className="font-display text-[clamp(3.6rem,12vw,7.8rem)] font-bold leading-[0.86] tracking-[-0.04em] text-white">
+          <div className="stagger-in hero-copy">
+            <p className="hero-copy__brand font-display text-[clamp(3.6rem,12vw,7.8rem)] font-bold leading-[0.86] tracking-[-0.04em] text-white">
               Avero
             </p>
             <p className="mt-3 font-mono text-[11px] font-medium tracking-[0.28em] text-signal uppercase md:text-xs">
               Technologies · Production systems
             </p>
-            <h1 className="mt-8 max-w-xl font-display text-2xl font-semibold leading-tight tracking-tight text-white md:text-[2.35rem]">
+            <h1 className="hero-copy__title mt-8 max-w-xl font-display text-2xl font-semibold leading-tight tracking-tight text-white md:text-[2.35rem]">
               Systems built for production.
             </h1>
-            <p className="mt-4 max-w-lg text-base leading-relaxed text-white/78 md:text-lg">
+            <p className="hero-copy__body mt-4 text-base leading-relaxed md:text-lg">
               Software, cloud, AI, platforms, security, and data engineered for real production load.
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="hero-copy__actions mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Button href="/contact" size="lg">
                 Talk to us
               </Button>
