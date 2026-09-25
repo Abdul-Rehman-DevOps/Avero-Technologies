@@ -112,7 +112,8 @@ export function ContactForm() {
         <p className="tech-label text-signal">Message received</p>
         <h2 className="font-display mt-3 text-2xl text-ink-950">Thank you. We got your note.</h2>
         <p className="mt-3 max-w-lg text-sm text-ink-700">
-          Our team will reply to your email with a clear next step.
+          We sent a confirmation to your email. Our team will follow up with a clear next step,
+          usually within one business day.
         </p>
         <div className="mt-6">
           <Button type="button" variant="secondary" onClick={() => setSuccess(false)}>

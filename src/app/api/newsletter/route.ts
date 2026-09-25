@@ -1,6 +1,12 @@
 import { NextResponse } from "next/server";
-import { newsletterSchema } from "@/lib/newsletter/schema";
+import { getEmailProvider } from "@/lib/contact/email";
 import { rateLimit } from "@/lib/contact/rate-limit";
+import {
+  newsletterConfirmationEmail,
+  newsletterTeamNotifyEmail,
+} from "@/lib/contact/templates";
+import { newsletterSchema } from "@/lib/newsletter/schema";
+import { siteConfig } from "@/lib/site";
 import { fieldErrorsFromZod, firstIssueMessage } from "@/lib/validation/messages";
 
 export const runtime = "nodejs";
@@ -49,15 +55,59 @@ export async function POST(request: Request) {
   const email = parsed.data.email.toLowerCase();
   const already = subscribers.has(email);
   subscribers.add(email);
+  const source = parsed.data.source ?? "site";
+  const from = process.env.CONTACT_FROM_EMAIL ?? "noreply@avero.com";
+  const teamTo = process.env.CONTACT_TO_EMAIL;
 
-  if (process.env.EMAIL_PROVIDER === "console" || !process.env.EMAIL_PROVIDER) {
-    console.info("[newsletter]", { email, source: parsed.data.source ?? "site", already });
+  try {
+    const provider = getEmailProvider();
+
+    if (!already) {
+      const confirm = newsletterConfirmationEmail(email);
+      await provider.send({
+        to: email,
+        from,
+        replyTo: siteConfig.email,
+        subject: confirm.subject,
+        text: confirm.text,
+      });
+
+      if (teamTo) {
+        const notify = newsletterTeamNotifyEmail(email, source);
+        try {
+          await provider.send({
+            to: teamTo,
+            from,
+            subject: notify.subject,
+            text: notify.text,
+          });
+        } catch (notifyError) {
+          console.error(
+            "[newsletter] team notify failed",
+            notifyError instanceof Error ? notifyError.message : "unknown",
+          );
+        }
+      }
+    } else {
+      console.info("[newsletter] already subscribed", { email, source });
+    }
+  } catch (error) {
+    console.error(
+      "[newsletter] confirmation failed",
+      error instanceof Error ? error.message : "unknown",
+    );
+    return NextResponse.json(
+      {
+        error: `We could not complete your subscription right now. Please email ${siteConfig.email} or try again shortly.`,
+      },
+      { status: 502 },
+    );
   }
 
   return NextResponse.json({
     ok: true,
     message: already
       ? "You are already on the list. Thank you."
-      : "Thanks. You are subscribed.",
+      : "Thanks — check your inbox for a confirmation email.",
   });
 }

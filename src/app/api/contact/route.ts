@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { getEmailProvider } from "@/lib/contact/email";
 import { rateLimit } from "@/lib/contact/rate-limit";
 import { contactSchema } from "@/lib/contact/schema";
+import { contactAcknowledgementEmail } from "@/lib/contact/templates";
+import { siteConfig } from "@/lib/site";
 import { fieldErrorsFromZod } from "@/lib/validation/messages";
 
 export const runtime = "nodejs";
@@ -87,15 +89,36 @@ export async function POST(request: Request) {
       to: to || "dev-null@localhost",
       from,
       replyTo: data.workEmail,
-      subject: `[Avero ${data.intent}] ${data.projectType} / ${data.company}`,
+      subject: `[Avero ${data.intent}] ${data.projectType} / ${data.company || "inquiry"}`,
       text,
     });
+
+    // Acknowledgement to the sender — best-effort; do not fail the submission if this fails.
+    try {
+      const ack = contactAcknowledgementEmail({
+        name: data.name,
+        intent: data.intent,
+        lookingToBuild: data.lookingToBuild,
+      });
+      await provider.send({
+        to: data.workEmail,
+        from,
+        replyTo: siteConfig.email,
+        subject: ack.subject,
+        text: ack.text,
+      });
+    } catch (ackError) {
+      console.error(
+        "[contact] acknowledgement failed",
+        ackError instanceof Error ? ackError.message : "unknown",
+      );
+    }
   } catch (error) {
     console.error("[contact] delivery failed", error instanceof Error ? error.message : "unknown");
     return NextResponse.json(
       {
         ok: false,
-        error: "We could not deliver your message right now. Please email contact@averotechnologies.com or try again shortly.",
+        error: `We could not deliver your message right now. Please email ${siteConfig.email} or try again shortly.`,
       },
       { status: 502 },
     );
