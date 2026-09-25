@@ -106,6 +106,7 @@ export async function POST(request: Request) {
         replyTo: siteConfig.email,
         subject: ack.subject,
         text: ack.text,
+        html: ack.html,
       });
     } catch (ackError) {
       console.error(

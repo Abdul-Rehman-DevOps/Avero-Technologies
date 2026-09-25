@@ -3,6 +3,7 @@ export type SendEmailInput = {
   from: string;
   subject: string;
   text: string;
+  html?: string;
   replyTo?: string;
 };
 
@@ -18,6 +19,7 @@ export class ConsoleEmailProvider implements EmailProvider {
       subject: input.subject,
       replyTo: input.replyTo,
       textLength: input.text.length,
+      htmlLength: input.html?.length ?? 0,
     });
     return { id: `console-${Date.now()}` };
   }
@@ -38,6 +40,7 @@ export class ResendEmailProvider implements EmailProvider {
         to: [input.to],
         subject: input.subject,
         text: input.text,
+        ...(input.html ? { html: input.html } : {}),
         reply_to: input.replyTo,
       }),
     });

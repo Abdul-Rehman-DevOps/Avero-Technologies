@@ -70,6 +70,7 @@ export async function POST(request: Request) {
         replyTo: siteConfig.email,
         subject: confirm.subject,
         text: confirm.text,
+        html: confirm.html,
       });
 
       if (teamTo) {
@@ -80,6 +81,7 @@ export async function POST(request: Request) {
             from,
             subject: notify.subject,
             text: notify.text,
+            html: notify.html,
           });
         } catch (notifyError) {
           console.error(
